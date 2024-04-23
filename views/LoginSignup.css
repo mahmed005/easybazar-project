@@ -85,3 +85,13 @@
     background-color: rgb(133, 133, 133);
     transition:background-color 0.15s;
   }
+  .logincolor{
+    background-color: rgb(242, 242, 242);
+  
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 7px;
+    width: 550px;
+    height: 400px;
+    padding-bottom: 10px;
+  }
