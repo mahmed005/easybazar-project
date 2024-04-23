@@ -3,59 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="LoginSignup.css">
     <title>Login/Signup</title>
 </head>
 <body>
-    <style>
-        .loginpage{
-            width: 100px;
-        }
-    </style>
-    <img src="Logo.png" id="logo">
+  
+    <img src="Logo.png" class="logo">
     <div id="login">
     <form id="loginForm" action="" class="login-form">
-        
-        <fieldset style="width: 500px; height: 200px; padding: 80px;">
-            <legend>Login/Signup</legend>
             <table>
                 <tr><td>Email:</td> <td><input type="text" placeholder="Email" name="Email" required id="LoginEmail"></td></tr>
                 <tr><td>Password:</td> <td><input type="password" placeholder="Password" required id="LoginPassword"></td></tr>
             </table>
             <button id="loginButton" >Login</button>
             <p>Don't have an account <a href="#" id="signupLink">signup</a></p>
-        </fieldset>
     </form>
 </div>
-<div id="signup">
-    <form id="signupForm" style="display: none;">
-       
-       
+<div class="colorsignup">
+  <div class="signup">
+    <h1 class="signupheading">Signup</h1>
+    <form id="signupForm" >
             <table>
-                <tr><td>First Name:</td> <td><input type="text" placeholder="First Name" name="First Name" required></td></tr>
-                <tr><td>Last Name:</td> <td><input type="text" placeholder="Last Name" name="Last Name" required></td></tr>
-                <tr><td>Email:</td> <td><input type="email" placeholder="Email" name="Email" required></td></tr>
-                <tr><td>Phone Number:</td> <td><input type="number" placeholder="Phone Number" name="Phone NUmber" required></td></tr>
-
-                <tr><td>Password:</td> <td><input type="password" placeholder="Password" name="Password" required id="passwords"></td></tr>
-                <tr><td>Retype-Password:</td> <td><input type="password" placeholder="Retype-Password" name="Retype-Password" required id="Retype-Password"></td></tr>
-
+                <tr> <td><input type="text" placeholder="First Name" name="First Name" required></td></tr>
+                <tr> <td><input type="text" placeholder="Last Name" name="Last Name" required></td></tr>
+                <tr><td><input type="email" placeholder="Email" name="Email" required></td></tr>
+                <tr> <td><input type="number" placeholder="Phone Number" name="Phone NUmber" required></td></tr>
+                <tr> <td><input type="password" placeholder="Password" name="Password" required id="passwords"></td></tr>
+                <tr> <td><input type="password" placeholder="Retype-Password" name="Retype-Password" required id="Retype-Password"></td></tr>
             </table>
             <input type="submit" id="signupButton">
         </fieldset>
     </form>
+   </div>
 </div>
 
     <script>
         //This block of code change the signup and login page
         document.getElementById("signupLink").addEventListener("click", function(event) {
-            document.getElementById("signupButton").addEventListener("click",function(event){
+           /* document.getElementById("signupButton").addEventListener("click",function(event){
             if(document.getElementById("passwords").value !=document.getElementById("Retype-Password").value){
                 alert("Password does not match");
                 event.preventDefault();
             }
-        })
+        })*/
             document.getElementById("loginForm").style.display = "none";
-            document.getElementById("signupForm").style.display = "block";
+            document.querySelector(".colorsignup").style.display = "block";
         });
 
         //this block of code take us to the home page when we press the login button
