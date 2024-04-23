@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header</title>
+  <style>
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 75px;
+    }
+
+    .dropdown-content a {
+      color: black;
+      background-color: white;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .searchbar {
+      display: inline-block;
+    }
+
+    .nav-header {
+      margin-bottom: 40px;
+    }
+
+    .nav-footer {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <center>
+      <h1>EasyBazar</h1>
+      <h3>Shop at your doorstep</h3>
+    </center>
+    <nav class="nav-header">
+      <div class="searchbar">Category: <input type="text" placeholder="Search Category"></div>
+      <a href="#" target="_blank">Home</a>
+      <a href="#" target="_blank">Shop</a>
+      <div class="dropdown">
+        <button class="dropbtn">Categories</button>
+        <div class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
+      <a href="#" target="_blank">About us</a>
+      <a href="#" target="_blank">Contact us</a>
+      <a href="LoginandSignup.html">Login/Signup</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <img src="HomePic.jpg" alt="The picture is not loaded" width="33%">
+    </section>
+    <section>
+      <h1>Every thing at door step</h1>
+      <div>
+        <h2>Top Quality Product</h2>
+        <p>Sclothers credits its origin to a simple yet industry disrupting realization, "Quality should never be a
+          privilege". We Synthesize the best of both worlds; Quality, Fashionable apparel that does not form craters in
+          your wallet.</p>
+      </div>
+      <div>
+        <h2>Proudly made in Pakistan</h2>
+        <p>Our industry manufactures products for the most loved brands over the globe. Thus, we produce every piece of product with the same export spirit. Yet, we take pride in being a Pakistani owned and produced entity.</p>
+      </div>
+      <div>
+        <h2>Fast Delivery Service</h2>
+        <p> we prioritize fast turnaround times on all orders. The moment you place your order, our dedicated team swings into action, meticulously processing and shipping it out ASAP. In most cases, you'll be rocking your fresh products within just a few business days.</p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <nav class="nav-footer">
+      <a href="#">FAQs</a>
+      <a href="#">Terms of use</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Refund Policy</a>
+    </nav>
+  </footer>
+</body>
+
+</html>
