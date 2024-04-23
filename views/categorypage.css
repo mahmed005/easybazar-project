@@ -1,0 +1,42 @@
+ .mainContainer {
+ background-color:rgb(220, 220, 220) ;
+ padding: 20px ;
+
+ } 
+
+.image-div {
+    flex-shrink: 0; /* Prevent image from shrinking */
+    margin-right: 20px; /* Add space between image and text */
+}
+
+.productDiv {
+    display: flex;
+    align-items: flex-start; /* Align items at the start */
+}
+
+.description-div {
+    display: flex;
+    align-items: flex-start;
+    margin-right: 10px; /* Add space between description and buttons */
+}
+.button-div{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+button{
+    border:none;
+    background-color: black;
+    color: aliceblue;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border-radius: 20px;
+    transition: .2s;
+    cursor: pointer;
+}
+button:hover{
+    background-color: grey;
+}
+.text-container{
+    margin-left: 10px;
+}
