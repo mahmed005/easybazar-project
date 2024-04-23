@@ -1,6 +1,6 @@
 const mysql2 = require("mysql2");
 
-const connection = mysql2.createPool(
+const pool = mysql2.createPool(
     {
         host: "localhost",
         user: "root",
@@ -8,3 +8,15 @@ const connection = mysql2.createPool(
         database: "easybazar"
     }
 ).promise();
+
+
+async function getPassword()
+{
+    const result = await pool.query(`SELECT password
+    FROM customer
+    WHERE email = "mahmedbwop@gmail.com"`);
+    console.log(result);
+}
+
+
+getPassword();
