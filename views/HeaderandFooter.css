@@ -1,0 +1,53 @@
+main{
+    font-family: 'Roboto';
+}
+/* .outermostDiv{
+    display: flex;
+    flex-direction:column;    
+} */
+.nav-header,.nav-footer {
+    background-color: black;
+    color: aliceblue;
+}
+.nav-header{
+    margin-top: 1px;
+}
+
+.navBarElement {
+    text-decoration: none;
+    color: aliceblue;
+    display: inline-block;
+    background-color: black;
+    border-right: 1px solid;
+    border-color: aliceblue;
+    transition: 0.2s;
+    font-family: 'Roboto';
+    font-size: 16px;
+    padding: 14px 20px;
+
+}
+
+.navBarElement:hover {
+    background-color: grey;
+}
+.searchbarelement{
+    padding: 10px 15px;
+}
+.header-content {
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    background-color: rgb(140, 140, 140);
+  }
+
+  .searchbar {
+    margin-left: 100px; 
+  }
+  .searchbarelement{
+    border-radius: 15px;
+    border-style:solid;
+    border-width: 1px;
+  }
+
+
+
