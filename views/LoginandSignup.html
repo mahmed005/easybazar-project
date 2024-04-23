@@ -11,8 +11,8 @@
             width: 100px;
         }
     </style>
-    <h1>EasyBazar</h1>
-    <center>
+    <img src="Logo.png" id="logo">
+    <div id="login">
     <form id="loginForm" action="" class="login-form">
         
         <fieldset style="width: 500px; height: 200px; padding: 80px;">
@@ -25,11 +25,11 @@
             <p>Don't have an account <a href="#" id="signupLink">signup</a></p>
         </fieldset>
     </form>
-</center>
-<center>
+</div>
+<div id="signup">
     <form id="signupForm" style="display: none;">
-        <fieldset style="width: 500px; height: 200px; padding: 80px; ">
-            <legend>Signup</legend>
+       
+       
             <table>
                 <tr><td>First Name:</td> <td><input type="text" placeholder="First Name" name="First Name" required></td></tr>
                 <tr><td>Last Name:</td> <td><input type="text" placeholder="Last Name" name="Last Name" required></td></tr>
@@ -43,7 +43,7 @@
             <input type="submit" id="signupButton">
         </fieldset>
     </form>
-</center>
+</div>
 
     <script>
         //This block of code change the signup and login page
