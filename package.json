@@ -1,0 +1,18 @@
+{
+  "name": "easybazar-project",
+  "version": "1.0.0",
+  "description": "An ecommerce project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Muhammad Ahmed",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7"
+  }
+}
