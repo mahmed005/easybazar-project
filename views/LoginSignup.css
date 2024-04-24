@@ -74,3 +74,14 @@
     border-radius: 20px;
     border: none;
    }
+   .signupbtn:hover{
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-top: 12px;
+    padding-bottom:12px ;
+    transition: 0.15s;
+   }
+   .signupbtn:active{
+    background-color: rgb(133, 133, 133);
+    transition:background-color 0.15s;
+  }
