@@ -9,21 +9,22 @@ main{
     background-color: black;
     color: aliceblue;
 }
-.nav-header{
-    margin-top: 1px;
-}
+
 
 .navBarElement {
     text-decoration: none;
     color: aliceblue;
     display: inline-block;
-    background-color: black;
-    border-right: 1px solid;
-    border-color: aliceblue;
+    background-color: black; 
     transition: 0.2s;
-    font-family: 'Roboto';
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
-    padding: 14px 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-right: 0px;
+    margin-left: 0px;
 
 }
 
@@ -31,23 +32,50 @@ main{
     background-color: grey;
 }
 .searchbarelement{
-    padding: 10px 15px;
+    padding: 11px 25px;
+    width: 400px;
+    margin-top: 5px;
+
+    padding-left: 30px; /* Adjust according to the size of your icon */
+    background-image: url('search_icon.svg'); /* Replace 'your-icon.svg' with the path to your SVG file */
+    background-repeat: no-repeat;
+    background-position: 5px center;
+     /* Adjust the position of the icon */
+    /* Add extra padding to ensure the text does not overlap with the icon */
+}
+.searchbarelement::placeholder{
+    color: rgb(157, 157, 157);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.searchbarelement:focus{
+    outline: none;
 }
 .header-content {
     display: flex;
     align-items: center;
     font-size: 25px;
-    background-color: rgb(140, 140, 140);
+    background-color: rgb(0, 0, 0);
+    margin-bottom: 0px;
   }
 
   .searchbar {
-    margin-left: 100px; 
+    margin-left: 150px; 
   }
   .searchbarelement{
     border-radius: 15px;
     border-style:solid;
     border-width: 1px;
   }
-
+  .headerbox{
+    margin-left: 0px;
+  }
+  .body{
+    margin: 0px;
+  }
+.ulbar{
+    margin: 0px;
+    padding-left: 0px;
+   
+}
 
 

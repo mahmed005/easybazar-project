@@ -105,3 +105,7 @@
     font-weight: bold;
     font-size: 18px;
   }
+  .signuplink:active{
+    color: rgb(133, 133, 133); 
+    transition: 0.15s;
+  }
