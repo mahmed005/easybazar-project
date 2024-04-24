@@ -22,7 +22,7 @@ exports.enterRecord = async function enterRecord(password)
 {
     const [result] = await pool.query(`
     INSERT INTO customer
-    VALUES ("c2" , "Muhammad" , "Ahmed" , "mahmedbwp@gmail.com" , "03155356353" , ?)` , [password]);
+    VALUES ("c3" , "Muhammad" , "Ahmed" , "mahmed@gmail.com" , "03655356353" , ?)` , [password]);
     return result;
 }
 
