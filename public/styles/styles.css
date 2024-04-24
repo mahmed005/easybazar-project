@@ -1,0 +1,107 @@
+.logo{
+    width: 90px;
+    height: auto;
+    display: block; /* Ensures the image behaves like a block element */
+    margin-left: auto; /* Sets left margin to auto */
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    border-radius: 5px;
+   }
+
+   .signupheading{
+    margin-bottom: 0px;
+    margin-top: 10px;
+    margin-left: 40px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(66, 65, 65);
+    
+   }
+   .easybazarh{
+   text-align: center;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    color: rgb(33, 33, 33);
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   }
+   .signup{
+   width:200px;
+   height: auto;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   padding-top: 50px;
+
+   }
+   .inputbox{
+    padding-top: 12px;
+    margin-left: 20px;
+    padding-bottom: 12px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 350px;
+    border-style: solid;
+    border-color: rgb(199, 195, 195);
+    border-radius: 25px;
+    border-width: 1px;
+    margin-bottom: 3px;
+    
+   }
+ 
+   .colorsignup{
+    background-color: rgb(242, 242, 242);
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 7px;
+    width: 550px;
+    height: 400px;
+    padding-bottom: 10px;
+   }
+   .signupbtn{
+    margin-top: 10px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 10px;
+    padding-bottom:10px ;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: black;
+    border-radius: 20px;
+    border: none;
+   }
+   .signupbtn:hover{
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-top: 12px;
+    padding-bottom:12px ;
+    transition: 0.15s;
+   }
+   .signupbtn:active{
+    background-color: rgb(133, 133, 133);
+    transition:background-color 0.15s;
+  }
+  .logincolor{
+    background-color: rgb(242, 242, 242);
+  
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 7px;
+    width: 550px;
+    height: 300px;
+    padding-bottom: 10px;
+  }
+  .accounttxt{
+    padding-left: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .signuplink{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+  }

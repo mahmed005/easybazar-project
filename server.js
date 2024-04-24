@@ -7,15 +7,16 @@ const database = require(__dirname + "/database.js");
 const app = express();
 
 app.use(bodyParser.urlencoded({extended : true}));
+app.use(express.static("public"));
 
-app.set("view engine" , ejs);
+app.set("view engine" , "ejs");
 
 app.listen(3000 , () => {
     console.log("Server is running on port 3000");
 });
 
 app.get("/login" , (req,res) => {
-    res.sendFile(__dirname + "/views/LoginandSignup.html");
+    res.render("loginandsignup" , {type : "login"});
 })
 
 app.post("/login" , async (req,res) => {
