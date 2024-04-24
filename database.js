@@ -10,13 +10,19 @@ const pool = mysql2.createPool(
 ).promise();
 
 
-async function getPassword()
+exports.getPassword =  async function getPassword(email)
 {
-    const result = await pool.query(`SELECT password
+    const [result] = await pool.query(`SELECT password
     FROM customer
-    WHERE email = "mahmedbwop@gmail.com"`);
-    console.log(result);
+    WHERE email = ?` , [email]);
+    return result;
 }
 
+exports.enterRecord = async function enterRecord(password)
+{
+    const [result] = await pool.query(`
+    INSERT INTO customer
+    VALUES ("c2" , "Muhammad" , "Ahmed" , "mahmedbwp@gmail.com" , "03155356353" , ?)` , [password]);
+    return result;
+}
 
-getPassword();

@@ -10,27 +10,26 @@
   
     <img src="Logo.png" class="logo">
     <h1 class="easybazarh">Easy Bazar</h1>
-    <div id="login" class="logincolor" >
-        
-       <form id="loginForm" action="" class="login-form">
+    <div id="login">
+    <form id="loginForm" action="/login" class="login-form" method="post">
             <table>
-                <tr> <td><input type="text" placeholder="Email"  class='inputbox' name="Email" required id="LoginEmail"></td></tr>
-                <tr> <td><input type="password" placeholder="Password" class='inputbox' required id="LoginPassword"></td></tr>
+                <tr><td>Email:</td> <td><input type="text" placeholder="Email" name="email" required id="LoginEmail"></td></tr>
+                <tr><td>Password:</td> <td><input type="password" placeholder="Password" name="password" required id="LoginPassword"></td></tr>
             </table>
-            <button id="loginButton" class="signupbtn">Login</button>
+            <button type="submit" id="loginButton">Login</button>
             <p>Don't have an account <a href="#" id="signupLink">signup</a></p>
         </form>
 </div>
 <div class="colorsignup">
     <h1 class="signupheading">Signup</h1>
-    <form id="signupForm" >
+    <form id="signupForm" action="/signup" method="post" >
             <table>
-                <tr> <td><input type="text" placeholder="First Name" class="inputbox" name="First Name" required></td></tr>
-                <tr> <td><input type="text" placeholder="Last Name" class="inputbox"  name="Last Name" required></td></tr>
-                <tr><td><input type="email" placeholder="Email" class="inputbox"  name="Email" required></td></tr>
-                <tr> <td><input type="number" placeholder="Phone Number" class="inputbox"  name="Phone NUmber" required></td></tr>
-                <tr> <td><input type="password" placeholder="Password" class="inputbox"  name="Password" required id="passwords"></td></tr>
-                <tr> <td><input type="password" placeholder="Retype-Password" class="inputbox"  name="Retype-Password" required id="Retype-Password"></td></tr>
+                <tr> <td><input type="text" placeholder="First Name" class="inputbox" name="firstName" required></td></tr>
+                <tr> <td><input type="text" placeholder="Last Name" class="inputbox"  name="lastName" required></td></tr>
+                <tr><td><input type="email" placeholder="Email" class="inputbox"  name="email" required></td></tr>
+                <tr> <td><input type="number" placeholder="Phone Number" class="inputbox"  name="phNum" required></td></tr>
+                <tr> <td><input type="password" placeholder="Password" class="inputbox"  name="password" required id="passwords"></td></tr>
+                <tr> <td><input type="password" placeholder="Retype-Password" class="inputbox"  name="rePass" required id="Retype-Password"></td></tr>
             </table>
             <input type="submit" id="signupButton" class="signupbtn">
         </fieldset>
