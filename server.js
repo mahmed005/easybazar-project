@@ -21,6 +21,11 @@ app.get("/login" , (req,res) => {
 app.post("/login" , async (req,res) => {
     const {email,password} = req.body;  
     const result = await database.getPassword(email);
+    console.log(result);
+    if(!result[0].password)
+    {
+        res.send("You entered the wrong email");
+    }
     const isValid = await  bcrypt.compare(password , result[0].password);
     if(isValid)
     {
