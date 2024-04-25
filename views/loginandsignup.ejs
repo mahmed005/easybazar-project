@@ -4,65 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
-    <title><%=type%></title>
+    <title>
+        <%=type%>
+    </title>
 </head>
+
 <body>
     <img src="images/Logo.png" class="logo">
     <h1 class="easybazar">Easy Bazar</h1>
-    <% if(type === "login"){%>
-    <div id="login" class="logincolor">
-        <h1 class="signupheading">Login</h1>
-    <form id="loginForm" action="/login" class="login-form" method="post">
-            <table>
-                <tr> <td><input type="text" class="inputbox" placeholder="Email" name="email" required id="LoginEmail"></td></tr>
-                <tr><td><input type="password" class="inputbox" placeholder="Password" name="password" required id="LoginPassword"></td></tr>
-            </table>
-            <button type="submit" class="signupbtn" id="loginButton">Login</button>
-            <p class="accounttxt">Don't have an account? <a href="#" id="signupLink"><span class="signuplink">Signup</span></a></p>
-        </form>
-</div>
-<%} else{%>
-<div class="colorsignup">
-    <h1 class="signupheading">Signup</h1>
-    <form id="signupForm" action="/signup" method="post" >
-            <table>
-                <tr> <td><input type="text" placeholder="First Name" class="inputbox" name="firstName" required></td></tr>
-                <tr> <td><input type="text" placeholder="Last Name" class="inputbox"  name="lastName" required></td></tr>
-                <tr><td><input type="email" placeholder="Email" class="inputbox"  name="email" required></td></tr>
-                <tr> <td><input type="tel" placeholder="Phone Number" class="inputbox"  name="phNum" required></td></tr>
-                <tr> <td><input type="password" placeholder="Password" class="inputbox"  name="password" required id="passwords"></td></tr>
-                <tr> <td><input type="password" placeholder="Retype-Password" class="inputbox"  name="rePass" required id="Retype-Password"></td></tr>
-            </table>
-            <input type="submit" id="signupButton" class="signupbtn">
-        </fieldset>
-    </form>
-</div>
-<%}%>
-
-    <script>
-        //This block of code change the signup and login page
-        document.getElementById("signupLink").addEventListener("click", function(event) {
-           /* document.getElementById("signupButton").addEventListener("click",function(event){
-            if(document.getElementById("passwords").value !=document.getElementById("Retype-Password").value){
-                alert("Password does not match");
-                event.preventDefault();
-            }
-        })*/
-            document.getElementById("login").style.display = "none";
-            document.querySelector(".colorsignup").style.display = "block";
-        });
-
-        //this block of code take us to the home page when we press the login button
-        // document.getElementById('loginButton').addEventListener('click',function (event){
-        //     if((document.getElementById('LoginEmail').value==="")||(document.getElementById('LoginPassword').value==="")){
-            // event.preventDefault();
-        //     }
-        //     else{
-        //         
-        //     window.location.href="HomePage.html"
-        //     }
-        // })
-   
-    </script>
+    <% if(type === "login" ){ %>
+        <div id="login" class="logincolor">
+            <h1 class="signupheading">Login</h1>
+            <form id="loginForm" action="/login" class="login-form" method="post">
+                <table>
+                    <tr>
+                        <td><input type="text" class="inputbox" placeholder="Email" name="email" required
+                                id="LoginEmail"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" class="inputbox" placeholder="Password" name="password" required
+                                id="LoginPassword"></td>
+                    </tr>
+                </table>
+                <button type="submit" class="signupbtn" id="loginButton">Login</button>
+            </form>
+            <p class="accounttxt">Don't have an account?
+            <form action="/userchoice" method="post">
+                <button type="submit" name="signup">Signup Now!</button>
+            </form>
+            </p>
+        </div>
+    <% } else if (type === "signup") { %>
+            <div class="colorsignup">
+                <h1 class="signupheading">Signup</h1>
+                <form id="signupForm" action="/signup" method="post">
+                    <table>
+                        <tr>
+                            <td><input type="text" placeholder="First Name" class="inputbox" name="firstName" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Last Name" class="inputbox" name="lastName" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="email" placeholder="Email" class="inputbox" name="email" required></td>
+                        </tr>
+                        <tr>
+                            <td><input type="tel" placeholder="Phone Number" class="inputbox" name="phNum" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" placeholder="Password" class="inputbox" name="password" required
+                                    id="passwords"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" placeholder="Retype-Password" class="inputbox" name="rePass"
+                                    required id="Retype-Password"></td>
+                        </tr>
+                    </table>
+                    <input type="submit" id="signupButton" class="signupbtn">
+                </form>
+            </div>
+    <% } %>     
 </body>
+
 </html>

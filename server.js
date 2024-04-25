@@ -17,7 +17,7 @@ app.listen(3000 , () => {
 
 app.get("/login" , (req,res) => {
     res.render("loginandsignup" , {type : "login"});
-})
+});
 
 app.post("/login" , async (req,res) => {
     const {email,password} = req.body;  
@@ -30,17 +30,30 @@ app.post("/login" , async (req,res) => {
     const isValid = await  bcrypt.compare(password , result[0].password);
     if(isValid)
     {
-        res.send("Login successfull");
+        res.redirect("/home");
         return;
     }
     else
     {
         res.send("Login failed");
     }
-})
+});
 
 app.get("/signup" , async (req,res) => {
-    const password = await bcrypt.hash("ahmed" , 10);
-    const result = await database.enterRecord(password);
-    console.log(result);
+    res.render("loginandsignup" , {type: "signup"});
+});
+
+
+app.post("/userchoice" , (req,res) => {
+    console.log("received");
+    res.redirect("/signup");
+});
+
+
+app.post("/signup" , (req,res) => {
+    res.redirect("/login");
 })
+
+app.get("/home" , (req,res) => {
+    res.render("home");
+});
