@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/loginandsignup.css">
     <title>
         <%=type%>
     </title>
@@ -12,9 +13,9 @@
 <body>
     <img src="images/Logo.png" class="logo">
     <h1 class="easybazar">Easy Bazar</h1>
-    <% if(type === "login" ){ %>
+    <% if(type==="Log in" ){ %>
         <div id="login" class="logincolor">
-            <h1 class="signupheading">Login</h1>
+            <h1 class="signupheading">Log in</h1>
             <form id="loginForm" action="/login" class="login-form" method="post">
                 <table>
                     <tr>
@@ -28,13 +29,15 @@
                 </table>
                 <button type="submit" class="signupbtn" id="loginButton">Login</button>
             </form>
-            <p class="accounttxt">Don't have an account?
-            <form action="/userchoice" method="post">
-                <button type="submit" name="signup">Signup Now!</button>
-            </form>
-            </p>
+            <div id="choice">
+                <p class="accounttxt">Don't have an account?
+                <form style="display: inline;" action="/userchoice" method="post">
+                    <button type="submit" name="signup" class="signupbtn" style="display: inline; padding: 10px 15px; ">Sign up</button>
+                </form>
+                </p>
+            </div>
         </div>
-    <% } else if (type === "signup") { %>
+        <% } else { %>
             <div class="colorsignup">
                 <h1 class="signupheading">Signup</h1>
                 <form id="signupForm" action="/signup" method="post">
@@ -66,7 +69,7 @@
                     <input type="submit" id="signupButton" class="signupbtn">
                 </form>
             </div>
-    <% } %>     
+            <% } %>
 </body>
 
 </html>

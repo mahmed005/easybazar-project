@@ -72,6 +72,7 @@
     background-color: black;
     border-radius: 20px;
     border: none;
+    cursor: pointer;
    }
    .signupbtn:hover{
     padding-left: 64px;
@@ -84,6 +85,7 @@
     background-color: rgb(133, 133, 133);
     transition:background-color 0.15s;
   }
+
   .logincolor{
     background-color: rgb(242, 242, 242);
   
@@ -94,13 +96,13 @@
     height: 300px;
     padding-bottom: 10px;
   }
+
   .accounttxt{
     padding-left: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: inline;
   }
-  .signuplink{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
+
+  #choice{
+    margin-top: 12px;
   }

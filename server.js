@@ -16,7 +16,7 @@ app.listen(3000 , () => {
 });
 
 app.get("/login" , (req,res) => {
-    res.render("loginandsignup" , {type : "login"});
+    res.render("loginandsignup" , {type : "Log in"});
 });
 
 app.post("/login" , async (req,res) => {
@@ -40,7 +40,7 @@ app.post("/login" , async (req,res) => {
 });
 
 app.get("/signup" , async (req,res) => {
-    res.render("loginandsignup" , {type: "signup"});
+    res.render("loginandsignup" , {type: "Sign up"});
 });
 
 
