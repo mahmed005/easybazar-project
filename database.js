@@ -26,3 +26,21 @@ exports.enterRecord = async function enterRecord(password)
     return result;
 }
 
+exports.getCategoryProducts = async function (categoryID , limit)
+{
+    const[result] = await pool.query(`
+    SELECT p_id, p_name, picture
+    FROM products
+    WHERE cat_id = ?
+     LIMIT ?` , [categoryID , limit]);
+    return result;
+}
+
+exports.getCategories  = async function()
+{
+    const [result] = await pool.query(`
+    SELECT *
+    FROM category`);
+    return result;
+}
+
