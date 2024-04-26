@@ -1,11 +1,17 @@
+.main-container{
+    margin-top: 20px;
+}
+
+
 .c-name{
+    margin-left: 20px;
     font-size: 20px;
     font-family: "Raleway" , sans-serif;
     color: rgb(177, 174, 174);
     border-bottom: 2px solid rgb(121, 121, 121);
     display: inline-block;
     font-weight: 600;
-    width: 300px;
+    width: 250px;
 }
 
 .products-container{

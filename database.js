@@ -44,3 +44,13 @@ exports.getCategories  = async function()
     return result;
 }
 
+async function addProduct()
+{
+    const result = await pool.query(`
+    INSERT INTO products
+    VALUES ("p1" , "Laptop" , 3 , "delivery.jpg" , "s1" , "cat1" , "Hello") `); 
+    return result;
+}
+
+
+

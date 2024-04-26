@@ -3,8 +3,10 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const ejs = require("ejs");
 const database = require(__dirname + "/database.js");
+const multer = require("multer");
 
 const app = express();
+const upload = multer({dest: __dirname + "uploads"});
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.static("public"));
@@ -63,8 +65,17 @@ app.get("/home" , async (req,res) => {
         {
             const category = categories[i].cat_id;
             const products = await database.getCategoryProducts(category , 3);
+            for(let j = 0; j < products.length ; j++)
+            {
+                products[j].pic_path = "/uploads/" + products[j].pic_path;
+            }
             categories[i]["products"] = products;
         }
     }
     res.render("home" , {categories});
 });
+
+// app.get("/test" , upload.single("./Images/delivery.jpg" ,  async (req,res) => {
+//     const result = await database.addProduct(req.file.path);
+//     console.log(result);
+// }));

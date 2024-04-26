@@ -1,4 +1,5 @@
 <%- include("header")%>
+<% additionalCss = ['/styles/categorycontainer.css']; %>
   <main>
     <!-- <section>
       <h1 class="headingtxt">Every thing at door step</h1>
@@ -31,25 +32,23 @@
         <img src="fast_delivery.jpg" alt="The picture is not loaded" class="descimg">
       </div>
     </section> -->
+    <div class="main-container">
     <% for(let i=0 ; i< categories.length ; i++) {%>
       <div class="container">
-        <span class="c-name"><%= categories[i].name%></span>
+        <span class="c-name">
+          <%= categories[i].name%>
+        </span>
         <div class="products-container">
+          <% for(let j = 0; j < categories[i].products.length ; j++) {%>
           <div class="product">
-            <img class="p-img" src="../Images/delivery.jpg" alt="">
-            <p class="p-name">Product Name</p>
+            <img class="p-img" src="<%= categories[i].products[j].pic_path%>" alt="">
+            <p class="p-name"><%= categories[i].products[j].p_name%></p>
           </div>
-          <div class="product">
-            <img class="p-img" src="../Images/HomePic.jpg" alt="">
-            <p class="p-name">Product Name</p>
-          </div>
-          <div class="product">
-            <img class="p-img" src="../Images/quality_assurance.jpg" alt="">
-            <p class="p-name">Product Name</p>
-          </div>
+          <% }%>
         </div>
       </div>
 
       <% }%>
+    </div>
   </main>
   <%- include("footer") %>
