@@ -31,5 +31,25 @@
         <img src="fast_delivery.jpg" alt="The picture is not loaded" class="descimg">
       </div>
     </section> -->
+    <% for(let i=0 ; i< categories.length ; i++) {%>
+      <div class="container">
+        <span class="c-name"><%= categories[i].name%></span>
+        <div class="products-container">
+          <div class="product">
+            <img class="p-img" src="../Images/delivery.jpg" alt="">
+            <p class="p-name">Product Name</p>
+          </div>
+          <div class="product">
+            <img class="p-img" src="../Images/HomePic.jpg" alt="">
+            <p class="p-name">Product Name</p>
+          </div>
+          <div class="product">
+            <img class="p-img" src="../Images/quality_assurance.jpg" alt="">
+            <p class="p-name">Product Name</p>
+          </div>
+        </div>
+      </div>
+
+      <% }%>
   </main>
   <%- include("footer") %>

@@ -29,7 +29,7 @@ exports.enterRecord = async function enterRecord(password)
 exports.getCategoryProducts = async function (categoryID , limit)
 {
     const[result] = await pool.query(`
-    SELECT p_id, p_name, picture
+    SELECT p_id, p_name, pic_path
     FROM products
     WHERE cat_id = ?
      LIMIT ?` , [categoryID , limit]);

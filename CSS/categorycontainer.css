@@ -1,0 +1,31 @@
+.c-name{
+    font-size: 20px;
+    font-family: "Raleway" , sans-serif;
+    color: rgb(177, 174, 174);
+    border-bottom: 2px solid rgb(121, 121, 121);
+    display: inline-block;
+    font-weight: 600;
+    width: 300px;
+}
+
+.products-container{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.p-img{
+    height: 200px;
+}
+
+.product{
+    padding: 30px;
+    background-color: rgb(221, 221, 221);
+    border-radius: 5px;
+}
+
+.p-name{
+    color: teal;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: "Open Sans" , sans-serif;
+}
