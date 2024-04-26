@@ -6,7 +6,7 @@ const database = require(__dirname + "/database.js");
 const multer = require("multer");
 
 const app = express();
-const upload = multer({dest: __dirname + "uploads"});
+const upload = multer({dest: __dirname + "/public/uploads"});
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.static("public"));
