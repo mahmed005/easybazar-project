@@ -38,7 +38,7 @@ main{
     margin-top: 5px;
 
     padding-left: 30px; /* Adjust according to the size of your icon */
-    background-image: url('search_icon.svg'); /* Replace 'your-icon.svg' with the path to your SVG file */
+    background-image: url('../images/search_icon.svg'); /* Replace 'your-icon.svg' with the path to your SVG file */
     background-repeat: no-repeat;
     background-position: 5px center;
      /* Adjust the position of the icon */

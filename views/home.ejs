@@ -1,73 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Header</title>
-  <link rel="stylesheet" href="styles/HeaderandFooter.css">
-</head>
-
-<body class="body">
-  <header class="headerbox">
-    <div class="outermostDiv">
-    <div class="header-content">
-    <img src="Logo.png" alt="skill issue"height=60px class="logopic"> 
-    <div class="searchbar">Product: <input type="text" placeholder="Search Product Category " class="searchbarelement" width="600px"> </div>
-  </div>
-    <nav class="nav-header">  
-      <ul class="ulbar">
-   <a href="#" target="_blank"class="navBarElement">Home</a>
-   <a href="#" target="_blank"class="navBarElement">Shop</a>
-   <a href="#" target="_blank"class="navBarElement">Category</a>
-   <a href="#" target="_blank"class="navBarElement">About us</a>
-   <a href="#" target="_blank"class="navBarElement">Contact us</a>
-   <a href="LoginandSignup.html"class="navBarElement">Login/Signup</a>
-    </ul>
-
-    </div>
-    </nav>
-  </div>
-  </header>
+<%- include("header")%>
   <main>
-    <section>
+    <!-- <section>
       <h1 class="headingtxt">Every thing at door step</h1>
-      <p class="desctxt">EasyBazar ensures top-notch quality with every purchase, delivering convenience and satisfaction right to your doorstep. Shop with us for unparalleled excellence in every product</p> 
-      <img src="door_step.jpg" alt="The picture is not loaded" class="descimg" >
+      <p class="desctxt">EasyBazar ensures top-notch quality with every purchase, delivering convenience and
+        satisfaction right to your doorstep. Shop with us for unparalleled excellence in every product</p>
+      <img src="door_step.jpg" alt="The picture is not loaded" class="descimg">
     </section>
     <section>
-      
+
       <div>
         <h2 class="headingtxt">Top Quality Product</h2>
-        <p  class="desctxt">Sclothers credits its origin to a simple yet industry disrupting realization, "Quality should never be a
+        <p class="desctxt">Sclothers credits its origin to a simple yet industry disrupting realization, "Quality should
+          never be a
           privilege". We Synthesize the best of both worlds; Quality, Fashionable apparel that does not form craters in
           your wallet.</p>
-          <img src="quality_assurance.jpg" alt="The picture is not loaded" class="descimg" >
+        <img src="quality_assurance.jpg" alt="The picture is not loaded" class="descimg">
       </div>
       <div>
         <h2 class="headingtxt">Proudly made in Pakistan</h2>
-        <p   class="desctxt">Our Industry manufactures products for the most loved brands over the globe. Thus, we produce every piece of product with the same export spirit. Yet, we take pride in being a Pakistani owned and produced entity.</p>
-        <img src="flag.jpg" alt="The picture is not loaded" class="descimg" >
+        <p class="desctxt">Our Industry manufactures products for the most loved brands over the globe. Thus, we produce
+          every piece of product with the same export spirit. Yet, we take pride in being a Pakistani owned and produced
+          entity.</p>
+        <img src="flag.jpg" alt="The picture is not loaded" class="descimg">
       </div>
       <div>
         <h2 class="headingtxt">Fast Delivery Service</h2>
-        <p  class="desctxt"> We prioritize fast turnaround times on all orders. The moment you place your order, our dedicated team swings into action, meticulously processing and shipping it out ASAP. In most cases, you'll be rocking your fresh products within just a few business days.</p>
-        <img src="fast_delivery.jpg" alt="The picture is not loaded" class="descimg" >
+        <p class="desctxt"> We prioritize fast turnaround times on all orders. The moment you place your order, our
+          dedicated team swings into action, meticulously processing and shipping it out ASAP. In most cases, you'll be
+          rocking your fresh products within just a few business days.</p>
+        <img src="fast_delivery.jpg" alt="The picture is not loaded" class="descimg">
       </div>
-    </section>
+    </section> -->
   </main>
-  <footer>
-    <div class="footerDiv">
-    <nav class="nav-footer">
-      <ul class="ulbar">
-      <a href="#"target="_blank" class="navBarElement">FAQs</a>
-      <a href="#"target="_blank" class="navBarElement">Terms of use</a>
-      <a href="#"target="_blank" class="navBarElement">Privacy Policy</a>
-      <a href="#"target="_blank" class="navBarElement">Refund Policy</a>
-    </ul>
-    </nav>
-  </div>
-  </footer>
-</body>
-
-</html>
+  <%- include("footer") %>

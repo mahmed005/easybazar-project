@@ -43,6 +43,10 @@ app.get("/signup" , async (req,res) => {
     res.render("loginandsignup" , {type: "Sign up"});
 });
 
+app.post("/signup" , (req,res) => {
+    res.redirect("/login");
+})
+
 
 app.post("/userchoice" , (req,res) => {
     console.log("received");
@@ -50,10 +54,17 @@ app.post("/userchoice" , (req,res) => {
 });
 
 
-app.post("/signup" , (req,res) => {
-    res.redirect("/login");
-})
-
-app.get("/home" , (req,res) => {
-    res.render("home");
+app.get("/home" , async (req,res) => {
+    // res.render("home");
+    const categories = await database.getCategories();
+    if(categories.length != 0)
+    {
+        for(let  i = 0 ; i < categories.length; i++ )
+        {
+            const category = categories[i].cat_id;
+            const products = await database.getCategoryProducts(category , 3);
+            categories[i]["products"] = products;
+        }
+    }
+    res.render("home" , {categories});
 });
