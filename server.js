@@ -83,3 +83,9 @@ app.get("/home" , async (req,res) => {
 app.get("/products" , (req,res) => {
     res.send("hello");
 });
+
+app.get("/products/:id" , async (req,res) => {
+    const {id} = req.params;
+    const result = await database.getProduct(id);
+    console.log(result);
+})

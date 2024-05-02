@@ -44,13 +44,23 @@ exports.getCategories  = async function()
     return result;
 }
 
-async function addProduct()
-{
-    const result = await pool.query(`
-    INSERT INTO products
-    VALUES ("p1" , "Laptop" , 3 , "delivery.jpg" , "s1" , "cat1" , "Hello") `); 
+// async function addProduct()
+// {
+//     const result = await pool.query(`
+//     INSERT INTO products
+//     VALUES ("p1" , "Laptop" , 3 , "delivery.jpg" , "s1" , "cat1" , "Hello") `); 
+//     return result;
+// }
+
+exports.getProduct = async function(id) {
+    const [result] = await pool.query(`
+    SELECT p_id,p_name,stock,pic_path,p_description
+    FROM products
+    WHERE p_id = ?` , [id]);
     return result;
 }
+
+
 
 
 
