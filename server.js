@@ -81,7 +81,8 @@ app.get("/home" , async (req,res) => {
 // }));
 
 app.get("/products" , (req,res) => {
-    res.send("hello");
+    res.render("product-list");
+
 });
 
 app.get("/products/:id" , async (req,res) => {

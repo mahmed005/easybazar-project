@@ -52,6 +52,8 @@ exports.getCategories  = async function()
 //     return result;
 // }
 
+// addProduct();
+
 exports.getProduct = async function(id) {
     const [result] = await pool.query(`
     SELECT p_id,p_name,stock,pic_path,p_description
