@@ -11,6 +11,10 @@ main{
     color: aliceblue;
 }
 
+.footerDiv{
+  margin-top: auto;
+}
+
 
 .navBarElement {
     text-decoration: none;
