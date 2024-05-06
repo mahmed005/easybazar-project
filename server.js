@@ -89,4 +89,4 @@ app.get("/products/:id" , async (req,res) => {
     const {id} = req.params;
     const result = await database.getProduct(id);
     console.log(result);
-})
+});

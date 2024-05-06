@@ -1,32 +1,28 @@
 <%- include('header') %>
-<% additionalCss = ['/styles/categorypage.css']; %>
+<% additionalCss=['/styles/categorypage.css']; %>
 
-<div class="mainContainer">
-    <div class="productDiv">
-        <div class="image-div">
-            <img src="HomePic.jpg" alt="Interent Issue" height="200px">
-        </div>
-        <div class="text-container">
-            <div class="description-div">
-                <div>
-                <p>here comes the name of the category</p>
-                <div class="subdescription">
-                    <p>here comes the description  of the product</p>
+        <div class="product-container">
+            <div class="product-div">
+                <div class="image-div">
+                    <img class="product-image" src="/images/search_icon.svg" alt="Interent Issue">
+                </div>
+                <div class="description-div">
+                    <div class="text-div">
+                        <p class="product-name">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </p>
+                        <p class="product-description">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error et beatae, culpa tempora officia numquam? Praesentium, odit molestiae. A iste nobis tenetur optio reprehenderit provident illo consequuntur dolorum quod voluptate.
+                        </p>
+                    </div>
+                    <div class="buttons-div">
+                        <p>Availability: </p>
+                        <p>Price: </p>
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
                 </div>
             </div>
-            <div class="button-div">
-                <div>
-                <p>availability</p>
-                <p>price in RS</p>
-            </div>
-                <div>
-                <button>Add to Cart</button>
-                </div>
-                <div>
-                <button>Add to wishlist</button>
-            </div>
         </div>
-    </div>
-</div>
 
-<%- include("footer")%>
+        <%- include("footer")%>
