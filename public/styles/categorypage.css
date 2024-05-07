@@ -34,11 +34,15 @@
     white-space: nowrap; /* Prevent text from wrapping */
     overflow: hidden; /* Hide overflowing text */
     text-overflow: ellipsis; /* Display an ellipsis (...) to indicate truncated text */
-    cursor: pointer;}
+    cursor: pointer;
+    margin: 0px;
+}
     .text-container.expanded {
     white-space: normal; /* Allow text to wrap */
     overflow: visible; /* Display overflowing text */
     text-overflow: initial; /* Reset text-overflow property */
+     
+
 }
 
 .buttons-div{
@@ -61,15 +65,27 @@
     color: white;
     margin-bottom: 5px;
     border-radius: 20px;
+    transition: 0.15;
+}
+
+.btn:active{
+   background-color: white;
+   color: black; 
+
+}
+.btn1:active{
+    background-color: white;
+    color:rgb(215, 221, 37);
 }
 .btn1{
     width: 130px;
     padding: 10px;
-    background-color: rgb(175, 179, 51);
+    background-color: rgb(215, 221, 37);
     border: none;
     color: white;
     margin-bottom: 5px;
     border-radius: 20px;
+    transition: 0.15;
 }
 .product-name{
     font-size: larger;
@@ -82,4 +98,9 @@
 .Price{
     margin-top: 0px;
     margin-bottom: 20px;
+}
+.Description-heading{
+    margin-bottom: 0px;
+    font-size: large;
+    font-weight: 700;
 }
