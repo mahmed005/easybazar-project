@@ -1,28 +1,41 @@
 <%- include('header') %>
-<% additionalCss=['/styles/categorypage.css']; %>
+    <% additionalCss=['/styles/categorypage.css']; %>
 
         <div class="product-container">
+            <% for (let i = 0; i < products.length; i++) {%>
             <div class="product-div">
                 <div class="image-div">
-                    <img class="product-image" src="/images/search_icon.svg" alt="Interent Issue">
+                    <img class="product-image" src="<%= products[i].pic_path%>" alt="Interent Issue">
                 </div>
                 <div class="description-div">
                     <div class="text-div">
                         <p class="product-name">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            <%= products[i].p_name%>
                         </p>
-                        <p class="product-description">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error et beatae, culpa tempora officia numquam? Praesentium, odit molestiae. A iste nobis tenetur optio reprehenderit provident illo consequuntur dolorum quod voluptate.
+                        <p class="Description-heading">
+                            Description
+                        </p>
+                        <p class="text-container" onclick="toggleText(this)">
+                            <%= products[i].p_description%>
                         </p>
                     </div>
                     <div class="buttons-div">
-                        <p>Availability: </p>
-                        <p>Price: </p>
-                        <button>Add to Cart</button>
-                        <button>Buy Now</button>
+                        <p class="headtxt">Availability: </p>
+                        <p class="Avalibility">In Stock</p>
+                        <p class="headtxt">Price: </p>
+                        <p class="Price">Rs.19000</p>
+                        <button class="btn1">Add to Cart</button>
+                        <button class="btn">Buy Now</button>
                     </div>
                 </div>
             </div>
+            <%}%>
         </div>
+        <script>
+            function toggleText(element) {
+                element.classList.toggle('expanded');
+            }
+        </script>
+
 
         <%- include("footer")%>

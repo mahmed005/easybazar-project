@@ -36,6 +36,15 @@ exports.getCategoryProducts = async function (categoryID , limit)
     return result;
 }
 
+exports.getCategoryProducts = async function (categoryID)
+{
+    const[result] = await pool.query(`
+    SELECT p_id, p_name, pic_path, p_description
+    FROM products
+    WHERE cat_id = ?` , [categoryID]);
+    return result;
+}
+
 exports.getCategories  = async function()
 {
     const [result] = await pool.query(`
@@ -59,6 +68,13 @@ exports.getProduct = async function(id) {
     SELECT p_id,p_name,stock,pic_path,p_description
     FROM products
     WHERE p_id = ?` , [id]);
+    return result;
+}
+
+exports.addToWishlist = async function(productId , customerId) {
+    const [result] = await pool.query(`
+    INSERT INTO wishlist
+    VALUES( ?, ?)` , [customerId , productId]);
     return result;
 }
 
