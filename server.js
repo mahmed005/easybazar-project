@@ -101,4 +101,8 @@ app.post("/wishlist", async (req, res) => {
 app.get("/buynow" , (req,res) => {
     console.log(req.query);
     res.send("ok");
+});
+
+app.get("/cart" , (req,res) => {
+    res.send("cart");
 })

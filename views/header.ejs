@@ -23,14 +23,12 @@
       </div>
       <nav class="nav-header">
         <ul class="ulbar">
-          <a href="#" target="_blank" class="navBarElement">Home</a>
-          <a href="#" target="_blank" class="navBarElement">Shop</a>
-          <a href="#" target="_blank" class="navBarElement">Category</a>
-          <a href="#" target="_blank" class="navBarElement">About us</a>
-          <a href="#" target="_blank" class="navBarElement">Contact us</a>
-          <a href="LoginandSignup.html" class="navBarElement">Login/Signup</a>
+          <a onclick=`event.preventDefault(); window.location.href = "/home"` href="/home" target="" class="navBarElement">Home</a>
+          <a href="/cart" target="" onclick=`event.preventDefault();  window.location.href = "/cart"` class="navBarElement">Cart</a>
+          <a href="/aboutus" target="" onclick=`event.preventDefault(); window.location.href = "/aboutus"` class="navBarElement">About us</a>
+          <a href="/contactus" target="" onclick=`event.preventDefault(); window.location.href = "/contactus"`  class="navBarElement">Contact us</a>
+          <a href="" class="navBarElement">Login/Signup</a>
         </ul>
-
     </div>
     </nav>
     </div>
