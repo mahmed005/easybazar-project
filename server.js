@@ -9,6 +9,7 @@ const app = express();
 const upload = multer({ dest: __dirname + "/public/uploads" });
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static("public"));
 
 app.set("view engine", "ejs");
@@ -75,12 +76,29 @@ app.get("/products", async (req, res) => {
     for (let j = 0; j < products.length; j++) {
         products[j].pic_path = "/uploads/" + products[j].pic_path;
     }
-    res.render("product-list", {products});
+    res.render("product-list", { products });
 });
 
 
 app.post("/wishlist", async (req, res) => {
-    const { c_id, p_id } = req.body;
-    const result = database.addToWishlist(p_id, c_id);
-    res.send(result);
+    const answerObject = {
+        message : "",
+        result : {}
+    };
+
+    const {c_id, p_id } = req.body;
+    const result = await database.addToWishlist(p_id, c_id);
+    if (!result) {
+        answerObject.message = "fail";
+    }
+    else {
+        answerObject.message = "ok"
+        answerObject.result = result;
+    }
+    res.send(JSON.stringify(answerObject));
+});
+
+app.get("/buynow" , (req,res) => {
+    console.log(req.query);
+    res.send("ok");
 })

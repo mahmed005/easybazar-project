@@ -10,43 +10,38 @@ const pool = mysql2.createPool(
 ).promise();
 
 
-exports.getPassword =  async function getPassword(email)
-{
+exports.getPassword = async function getPassword(email) {
     const [result] = await pool.query(`SELECT password
     FROM customer
     WHERE email = ?` , [email]);
     return result;
 }
 
-exports.enterRecord = async function enterRecord(password)
-{
+exports.enterRecord = async function enterRecord(password) {
     const [result] = await pool.query(`
     INSERT INTO customer
     VALUES ("c3" , "Muhammad" , "Ahmed" , "mahmed@gmail.com" , "03655356353" , ?)` , [password]);
     return result;
 }
 
-exports.getCategoryProducts = async function (categoryID , limit)
-{
-    const[result] = await pool.query(`
+exports.getCategoryProducts = async function (categoryID, limit) {
+    const [result] = await pool.query(`
     SELECT p_id, p_name, pic_path
     FROM products
     WHERE cat_id = ?
-     LIMIT ?` , [categoryID , limit]);
+     LIMIT ?` , [categoryID, limit]);
     return result;
 }
 
-exports.getCategoryProducts = async function (categoryID)
-{
-    const[result] = await pool.query(`
+exports.getCategoryProducts = async function (categoryID) {
+    const [result] = await pool.query(`
     SELECT p_id, p_name, pic_path, p_description
     FROM products
     WHERE cat_id = ?` , [categoryID]);
     return result;
 }
 
-exports.getCategories  = async function()
-{
+exports.getCategories = async function () {
     const [result] = await pool.query(`
     SELECT *
     FROM category`);
@@ -63,7 +58,7 @@ exports.getCategories  = async function()
 
 // addProduct();
 
-exports.getProduct = async function(id) {
+exports.getProduct = async function (id) {
     const [result] = await pool.query(`
     SELECT p_id,p_name,stock,pic_path,p_description
     FROM products
@@ -71,10 +66,17 @@ exports.getProduct = async function(id) {
     return result;
 }
 
-exports.addToWishlist = async function(productId , customerId) {
-    const [result] = await pool.query(`
+exports.addToWishlist = async function (productId, customerId) {
+    let  result;
+    try {
+        [result] = await pool.query(`
     INSERT INTO wishlist
-    VALUES( ?, ?)` , [customerId , productId]);
+    VALUES(?, ?)` , [customerId, productId]);
+    }
+    catch(error)
+    {
+        return undefined;
+    }
     return result;
 }
 
