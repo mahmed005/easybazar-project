@@ -226,3 +226,19 @@
   color: black;
   background-color: white;
 }
+.checkout-button {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 8px;
+   border: none;
+   background-color: black;
+   color: white;
+   border-radius: 20px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+.checkout-button:active{
+  color: black;
+  background-color: white;
+}
