@@ -103,6 +103,17 @@ app.get("/buynow" , (req,res) => {
     res.send("ok");
 });
 
-app.get("/cart" , (req,res) => {
-    res.send("cart");
+app.get("/cart-page" , (req,res) => {
+    res.render("cart");
+})
+
+app.get("/cart" , async (req,res) => {
+    const products = [];
+    const cart = req.body;
+    for(let i = 0; i< cart.length ; i++)
+        {
+            const result = await database.getProduct(cart[i].pid);
+            products.push(result[0]);
+        }
+    return products;
 })
