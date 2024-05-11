@@ -83,7 +83,7 @@
   /* 100px 1fr 1fr; means the 2nd and 3rd column will
      take up half the remaining space in the grid
      (they will divide up the remaining space evenly). */
-  grid-template-columns: 100px 1fr 1fr;
+  grid-template-columns: 100px 1fr ;
   column-gap: 25px;
 }
 
@@ -109,6 +109,7 @@
 .product-name {
   font-weight: 700;
   margin-bottom: 8px;
+  font-size: large;
 }
 
 .product-price {
@@ -227,7 +228,7 @@
   background-color: white;
 }
 .checkout-button {
-  width: 100%;
+  width: 50%;
   padding-top: 12px;
   padding-bottom: 12px;
   border-radius: 8px;
