@@ -215,7 +215,14 @@
   padding-top: 12px;
   padding-bottom: 12px;
   border-radius: 8px;
-
+   border: none;
+   background-color: black;
+   color: white;
+   border-radius: 20px;
   margin-top: 11px;
   margin-bottom: 15px;
+}
+.place-order-button:active{
+  color: black;
+  background-color: white;
 }
