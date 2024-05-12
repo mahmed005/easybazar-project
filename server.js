@@ -82,38 +82,53 @@ app.get("/products", async (req, res) => {
 
 app.post("/wishlist", async (req, res) => {
     const answerObject = {
-        message : "",
-        result : {}
+        message: "",
+        result: {}
     };
 
-    const {c_id, p_id } = req.body;
+    const { c_id, p_id } = req.body;
     const result = await database.addToWishlist(p_id, c_id);
     if (!result) {
         answerObject.message = "fail";
     }
     else {
-        answerObject.message = "ok"
+        answerObject.message = "ok";
         answerObject.result = result;
     }
     res.send(JSON.stringify(answerObject));
 });
 
-app.get("/buynow" , (req,res) => {
-    console.log(req.query);
-    res.send("ok");
+app.get("/buynow", async (req, res) => {
+    let { cart, pid } = req.query;
+    const products = [];
+    if (cart) {
+        cart = JSON.parse(decodeURIComponent(cart));
+        for (let i = 0; i < cart.length; i++) {
+            const result = await database.getProduct(cart[i].pid);
+            result[0].pic_path = "/uploads/" + result[i].pic_path;
+            products.push(result[0]);
+        }
+    }
+    else if (pid) {
+        const result = await database.getProduct(pid);
+        result[0].pic_path = "/uploads/" + result[i].pic_path;
+        products.push(result[0]);
+    }
+    res.render("buypage", { products });
 });
 
-app.get("/cart-page" , (req,res) => {
+app.get("/cart-page", (req, res) => {
     res.render("cart");
 })
 
-app.get("/cart" , async (req,res) => {
+app.post("/cart", async (req, res) => {
     const products = [];
     const cart = req.body;
-    for(let i = 0; i< cart.length ; i++)
-        {
-            const result = await database.getProduct(cart[i].pid);
-            products.push(result[0]);
-        }
-    return products;
-})
+    for (let i = 0; i < cart.length; i++) {
+        const result = await database.getProduct(cart[i].pid);
+        result[0].pic_path = "/uploads/" + result[i].pic_path;
+        products.push(result[0]);
+    }
+    res.send(products);
+});
+

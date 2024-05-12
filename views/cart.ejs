@@ -1,41 +1,17 @@
 <%- include("header")%>
     <% additionalCss=['/styles/cartandbuynow.css']; %>
 
-            <div class="main">
-                <div class="page-title">Review your Cart</div>
-                <div class="checkout-grid">
-                    <div class="order-summary">
-                        <div class="cart-page-container">
+        <div class="main">
+            <div class="page-title">Review your Cart</div>
+            <div class="cart-page-container">
 
-                            <div class="cart-page-details-grid">
-                                <img class="product-image" src="images/products/athletic-cotton-socks-6-pairs.jpg">
-                                <div class="cart-item-details">
-                                    <div class="product-page-name">
-                                        Black and Gray Athletic Cotton Socks - 6 Pairs
-                                    </div>
-                                    <div class="product-price">
-                                        $10.90
-                                    </div>
-                                    <div class="product-quantity">
-                                        <span>
-                                            Quantity: <span class="quantity-label">2</span>
-                                        </span>
-                                        <span class="update-quantity-link link-primary">
-                                            Update
-                                        </span>
-                                        <span class="delete-quantity-link link-primary">
-                                            Delete
-                                        </span>
-                                    </div>
-                                    <button class="checkout-button button-primary">
-                                        Proceed to Checkout
-                                    </button>
-                                </div>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <script type="module" src="../public/scripts/cartPage.js"></script>
-            <%-include("footer")%>
+            <div class="checkout-button-div">
+                <button type="submit" name="source" value="cart" class="checkout-button button-primary">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+        <script type="module" src="/scripts/cartPage.js"></script>
+        <%-include("footer")%>
