@@ -261,3 +261,27 @@
   color: black;
   background-color: white;
 }
+.star {
+  font-size: 2vh;
+  cursor: pointer;
+}
+ 
+.one {
+  color: rgb(255, 0, 0);
+}
+ 
+.two {
+  color: rgb(255, 106, 0);
+}
+ 
+.three {
+  color: rgb(81, 148, 189);
+}
+ 
+.four {
+  color: rgb(200, 200, 8);
+}
+ 
+.five {
+  color: rgb(24, 159, 14);
+}
