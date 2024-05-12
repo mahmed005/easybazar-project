@@ -63,6 +63,7 @@
 
 .payment-summary {
   padding-bottom: 5px;
+  
 }
 
 @media (max-width: 1000px) {
@@ -71,6 +72,7 @@
       1 in the grid. (Normally, the row that an element is
       placed in is determined by the order of the elements in
       the HTML. grid-row overrides this default ordering). */
+      
     grid-row: 1;
     margin-bottom: 12px;
   }
@@ -89,7 +91,7 @@
   /* 100px 1fr 1fr; means the 2nd and 3rd column will
      take up half the remaining space in the grid
      (they will divide up the remaining space evenly). */
-  grid-template-columns: 100px 1fr 1fr;
+  grid-template-columns: 100px 1fr ;
   column-gap: 25px;
 }
 .cart-page-details-grid {
@@ -209,6 +211,7 @@
 }
 
 .payment-summary-money {
+
   text-align: right;
 }
 
