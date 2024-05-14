@@ -9,7 +9,7 @@
                     <div class="cart-item-container">
                         <% let sum = 0;%>
                         <% for(let i = 0; i < products.length; i++) {%>
-                            <% sum += products[i].price>
+                            <% sum += products[i].price;%>
                         <div class="cart-item-details-grid">
                             <img class="product-image" src="<%=products[i].pic_path%>">
 
@@ -23,9 +23,9 @@
                                 <div class="product-quantity">
                                     <span>
                                         Quantity: <span class="quantity-label"><%if(products.length === 1) {%>
-                                            <% = 1  % }>
-                                            <%else {%>
-                                                <% = products[i].quantity%>
+                                            <%= 1%>
+                                            <%} else {%>
+                                                <%= products[i].quantity%>
                                                 <%}%>
                                         </span>
                                     </span>
@@ -66,10 +66,12 @@
                     <div>Order total:</div>
                     <div class="payment-summary-money">$52.51</div>
                 </div>
-
-                <button class="place-order-button button-primary">
-                    Place your order
-                </button>
+                <form action="/buynow" method="post">
+                    <input type="hidden" name="products" value="<%= JSON.stringify(products) %>">
+                    <button class="place-order-button button-primary">
+                        Place your order
+                    </button>
+                </form>
             </div>
         </div>
         </div>

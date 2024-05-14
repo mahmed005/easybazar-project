@@ -132,3 +132,8 @@ app.post("/cart", async (req, res) => {
     res.send(products);
 });
 
+app.post("/buynow" , (req,res) => {
+    const products = JSON.parse(req.body.products);
+    console.log(products);
+})
+
