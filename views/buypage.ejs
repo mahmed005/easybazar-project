@@ -1,4 +1,76 @@
 <%- include("header")%>
+    <% additionalCss=['/styles/cartandbuynow.css']; %>
 
+        <div class="main">
+            <div class="page-title">Review your order</div>
 
-<%-include("footer")%>
+            <div class="checkout-grid">
+                <div class="order-summary">
+                    <div class="cart-item-container">
+                        <% let sum = 0;%>
+                        <% for(let i = 0; i < products.length; i++) {%>
+                            <% sum += products[i].price>
+                        <div class="cart-item-details-grid">
+                            <img class="product-image" src="<%=products[i].pic_path%>">
+
+                            <div class="cart-item-details">
+                                <div class="product-name">
+                                    <%= products[i].p_name %>
+                                </div>
+                                <div class="product-price">
+                                    $10.90
+                                </div>
+                                <div class="product-quantity">
+                                    <span>
+                                        Quantity: <span class="quantity-label"><%if(products.length === 1) {%>
+                                            <% = 1  % }>
+                                            <%else {%>
+                                                <% = products[i].quantity%>
+                                                <%}%>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-summary">
+                <div class="payment-summary-title">
+                    Order Summary
+                </div>
+
+                <div class="payment-summary-row">
+                    <div>Items (<%= products.length %>):</div>
+                    <div class="payment-summary-money">$<%= sum %></div>
+                </div>
+
+                <div class="payment-summary-row">
+                    <div>Shipping &amp; handling:</div>
+                    <div class="payment-summary-money">$4.99</div>
+                </div>
+
+                <div class="payment-summary-row subtotal-row">
+                    <div>Total before tax:</div>
+                    <div class="payment-summary-money">$47.74</div>
+                </div>
+
+                <div class="payment-summary-row">
+                    <div>Estimated tax (10%):</div>
+                    <div class="payment-summary-money">$4.77</div>
+                </div>
+
+                <div class="payment-summary-row total-row">
+                    <div>Order total:</div>
+                    <div class="payment-summary-money">$52.51</div>
+                </div>
+
+                <button class="place-order-button button-primary">
+                    Place your order
+                </button>
+            </div>
+        </div>
+        </div>
+        <%-include("footer")%>
