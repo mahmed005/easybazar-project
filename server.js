@@ -106,12 +106,14 @@ app.get("/buynow", async (req, res) => {
         for (let i = 0; i < cart.length; i++) {
             const result = await database.getProduct(cart[i].pid);
             result[0].pic_path = "/uploads/" + result[i].pic_path;
+            result[0]["quantity"] = cart[i].quantity;
             products.push(result[0]);
         }
     }
     else if (pid) {
         const result = await database.getProduct(pid);
         result[0].pic_path = "/uploads/" + result[i].pic_path;
+        result[0]["quantity"] = 1;
         products.push(result[0]);
     }
     res.render("buypage", { products });
@@ -132,8 +134,23 @@ app.post("/cart", async (req, res) => {
     res.send(products);
 });
 
-app.post("/buynow" , (req,res) => {
+app.post("/buynow" , async (req,res) => {
     const products = JSON.parse(req.body.products);
-    console.log(products);
-})
+    const cid = req.body.cid;
+    const todayDate = new Date();
+    const formattedDate = todayDate.toISOString().split('T')[0];
+    let totalAmount = 0;
+    for(let i = 0; i < products.length ; i++)
+        {
+            totalAmount += Number(products[i].price) * Number(products[i].quantity);
+        }
+    const response = await database.addOrder(cid , formattedDate , totalAmount);
+    const orderID = response.insertId;
+    for(let i = 0; i < products.length ; i++)
+        {
+            const subTotal = Number(products[i].price) * Number(products[i].quantity);
+            const result = await database.addOrderDetail(orderID , products[i].p_id ,products[i].quantity , subTotal);
+        }
+        res.send("Done");
+});
 

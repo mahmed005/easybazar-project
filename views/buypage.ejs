@@ -18,7 +18,7 @@
                                     <%= products[i].p_name %>
                                 </div>
                                 <div class="product-price">
-                                    $10.90
+                                    PKR <%= products[i].price %>
                                 </div>
                                 <div class="product-quantity">
                                     <span>
@@ -44,35 +44,32 @@
 
                 <div class="payment-summary-row">
                     <div>Items (<%= products.length %>):</div>
-                    <div class="payment-summary-money">$<%= sum %></div>
-                </div>
-
-                <div class="payment-summary-row">
-                    <div>Shipping &amp; handling:</div>
-                    <div class="payment-summary-money">$4.99</div>
                 </div>
 
                 <div class="payment-summary-row subtotal-row">
                     <div>Total before tax:</div>
-                    <div class="payment-summary-money">$47.74</div>
+                    <div class="payment-summary-money">PKR <%= sum %></div>
                 </div>
 
                 <div class="payment-summary-row">
                     <div>Estimated tax (10%):</div>
-                    <div class="payment-summary-money">$4.77</div>
+                    <% let tax = sum/10; %>
+                    <div class="payment-summary-money">PKR <%= tax %></div>
                 </div>
 
                 <div class="payment-summary-row total-row">
                     <div>Order total:</div>
-                    <div class="payment-summary-money">$52.51</div>
+                    <div class="payment-summary-money">PKR <%= (tax+sum) %></div>
                 </div>
-                <form action="/buynow" method="post">
+                <form action="/buynow" id="buy-form" method="post">
                     <input type="hidden" name="products" value="<%= JSON.stringify(products) %>">
-                    <button class="place-order-button button-primary">
+                    <input type="hidden" name="cid" id="cid">
+                    <button type="submit" class="place-order-button button-primary">
                         Place your order
                     </button>
                 </form>
             </div>
         </div>
         </div>
+        <script src="/scripts/buynow.js"></script>
         <%-include("footer")%>
