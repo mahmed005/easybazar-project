@@ -288,3 +288,8 @@
 .five {
   color: rgb(24, 159, 14);
 }
+
+.quantity-input{
+  display: none;
+  width: 35px;
+}
