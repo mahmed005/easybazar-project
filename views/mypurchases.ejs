@@ -1,56 +1,12 @@
 <%- include("header") %>
+<% additionalCss=['/styles/cartandbuynow.css']; %>
 
-<div class="main">
+  <div class="main">
     <div class="page-title">Your Orders</div>
-
     <div class="checkout-grid">
-      <div class="order-summary">
-        <div class="cart-page-container">
-         
-          <div class="cart-page-details-grid">
-            <img class="product-image"
-              src="images/products/athletic-cotton-socks-6-pairs.jpg">
-
-            <div class="cart-item-details">
-              <div class="product-page-name">
-                Black and Gray Athletic Cotton Socks - 6 Pairs
-              </div>
-              <div class="product-price">
-                $10.90
-              </div>
-              <div class="product-quantity">
-                <span>
-                  Quantity: <span class="quantity-label">2</span>
-                </span>
-                <span class="update-quantity-link link-primary">
-                  Review:
-                </span>
-                <span onclick="gfg(1)"
-                class="star">★
-          </span>
-          <span onclick="gfg(2)"
-                class="star">★
-          </span>
-          <span onclick="gfg(3)"
-                class="star">★
-          </span>
-          <span onclick="gfg(4)"
-                class="star">★
-          </span>
-          <span onclick="gfg(5)"
-                class="star">★
-          </span>
-              </div>
-              <button class="checkout-button button-primary">
-                  Delete
-                </button>
-            </div>
-       
-         </div> 
-        </div>
-      </div> 
-  </div> 
-</div> 
-
-
-<%- include("footer")%>
+      <div class="order-summary" id="content-container">
+      </div>
+    </div>
+  </div>
+  <script src="/scripts/mypurchases.js"></script>
+  <%- include("footer")%>

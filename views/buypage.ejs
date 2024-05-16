@@ -9,10 +9,9 @@
                     <div class="cart-item-container">
                         <% let sum = 0;%>
                         <% for(let i = 0; i < products.length; i++) {%>
-                            <% sum += products[i].price;%>
+                            <% sum += (products[i].price * products[i].quantity) ;%>
                         <div class="cart-item-details-grid">
                             <img class="product-image" src="<%=products[i].pic_path%>">
-
                             <div class="cart-item-details">
                                 <div class="product-name">
                                     <%= products[i].p_name %>

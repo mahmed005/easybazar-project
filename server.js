@@ -154,3 +154,30 @@ app.post("/buynow" , async (req,res) => {
         res.send("Done");
 });
 
+app.get("/mypurchases" , (req,res) => {
+    res.render("mypurchases");
+})
+
+app.post("/mypurchasesfetch" , async (req,res) => {
+    const cid = req.body.cid;
+    const response = await database.getOrders(cid);
+    for(let i = 0; i < response.length ; i++)
+        {
+            if (typeof response[i].o_date === 'object' && response[i].o_date instanceof Date) {
+                response[i].o_date = response[i].o_date.toISOString().split("T")[0];
+            }            
+        }
+    res.send(response);
+});
+
+app.get("/order-details" , async (req,res) => {
+    const orderID = req.query.oid;
+    const response = await database.getOrderDetails(orderID);
+    for(let i = 0; i < response.length ; i++)
+        {
+            response[i].pic_path = "/uploads/" + response[i].pic_path;
+        }
+        console.log(response);
+        res.render("order-details" , {response});
+})
+

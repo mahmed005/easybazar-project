@@ -55,7 +55,6 @@ exports.getCategories = async function () {
 //     VALUES ("p1" , "Laptop" , 3 , "delivery.jpg" , "s1" , "cat1" , "Hello") `); 
 //     return result;
 // }
-
 // addProduct();
 
 exports.getProduct = async function (id) {
@@ -92,6 +91,23 @@ exports.addOrderDetail = async function (orderID , p_id , quantity , subtotal) {
     INSERT INTO order_details
     VALUES( ? , ? ,? , ?);
     ` , [orderID , p_id , quantity , subtotal]);
+    return result;
+}
+
+exports.getOrders = async function(cid) {
+    const [result] = await pool.query(`
+    SELECT * 
+    FROM orders
+    WHERE c_id = ?
+    ` , [cid]);
+    return result;
+}
+
+exports.getOrderDetails = async function(orderID) {
+    const [result] = await pool.query(`
+    SELECT *
+    FROM order_product_details
+    WHERE o_id = ?` , [orderID]);
     return result;
 }
 

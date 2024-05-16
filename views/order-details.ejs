@@ -1,0 +1,40 @@
+<%- include("header") %>
+    <% additionalCss=['/styles/cartandbuynow.css']; %>
+
+        <div class="main">
+            <div class="page-title">Review your Cart</div>
+
+            <div class="checkout-grid">
+                <div class="order-summary">
+                    <% for(let i = 0; i < response.length ; i++) {%>
+                    <div class="cart-page-container">
+                        <div class="cart-page-details-grid">
+                            <img class="product-image" src="<%=response[i].pic_path%>">
+                            <div class="cart-item-details">
+                                <div class="product-page-name">
+                                    <%=response[i].p_name%>
+                                </div>
+                                <div class="product-price">
+                                    <%=response[i].price%>
+                                </div>
+                                <div class="product-quantity">
+                                    <span>
+                                        Quantity: <span class="quantity-label"><%=response[i].quantity%></span>
+                                    </span>
+                                    <span class="update-quantity-link link-primary">
+                                        Update
+                                    </span>
+                                    <span class="delete-quantity-link link-primary">
+                                        Delete
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+
+
+        <%- include("footer") %>
