@@ -177,7 +177,29 @@ app.get("/order-details" , async (req,res) => {
         {
             response[i].pic_path = "/uploads/" + response[i].pic_path;
         }
-        console.log(response);
         res.render("order-details" , {response});
+});
+
+app.get("/wishlist" , (req,res) =>{
+    res.render("wishlist");
+});
+
+app.post("/wishlistret" , async (req,res) => {
+    console.log(req.body);
+    const cid = req.body.cid;
+    const response = await database.getWishlist(cid);
+    for(let i = 0 ; i < response.length ; i++)
+        {
+            response[i].pic_path = "/uploads/" + response[i].pic_path;
+        }
+    res.send(response);
+});
+
+app.post("/wishlistremove" , async (req,res) => {
+    const {cid,pid} = req.body;
+    const response = await database.removeFromWishlist(cid,pid);
+    res.send(response);
 })
+
+
 

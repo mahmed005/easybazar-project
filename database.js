@@ -111,6 +111,21 @@ exports.getOrderDetails = async function(orderID) {
     return result;
 }
 
+exports.getWishlist = async function(cid) {
+    const [result] = await pool.query(`
+    SELECT * 
+    FROM wishlist_products
+    WHERE c_id = ?` , [cid]);
+    return result;
+}
+
+exports.removeFromWishlist = async function(cid,pid) {
+    const [result] = await pool.query(`
+    DELETE FROM wishlist
+    WHERE c_id = ? AND  p_id = ?` , [cid,pid]);
+    return result;
+}
+
 
 
 
