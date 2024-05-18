@@ -145,6 +145,12 @@ exports.getSellerOrders = async function(sid) {
     const [result] = await pool.query(`
     SELECT *
     FROM order_product_details
+    JOIN orders
+    ON order_product_details.o_id = orders.o_id
+    JOIN customer
+    ON orders.c_id = customer.c_id
+    JOIN users 
+    ON customer.u_id = users.u_id
     WHERE s_id = ?` , [sid]);
     return result;
 }
@@ -157,6 +163,22 @@ exports.updateStock = async function(sid,pid,pqty) {
     return result;
 }
 
+exports.getSellerPaymentDetails = async function(oid) {
+    const [result] = await pool.query(`
+    SELECT *
+    FROM payment
+    WHERE o_id = ?` , [oid]);
+    return result;
+}
+
+exports.updateSellerPayment = async function(oid,cid) {
+    const todayDate = new Date();
+    const formattedDate = todayDate.toISOString().split('T')[0];
+    const [result] = await pool.query(`
+    INSERT INTO payment
+    VALUES(default , ? , ? , "Cash On Deleivery" , ?)` , [oid,cid,formattedDate]);
+    return result;
+}
 
 
 

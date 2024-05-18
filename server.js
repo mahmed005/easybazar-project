@@ -210,9 +210,25 @@ app.post("/wishlistremove" , async (req,res) => {
     res.send(response);
 });
 
-app.get("/sellerorders" , async (req,res) => {
+app.get("/sellerorders" ,  (req,res) => {
+    res.render("sellerorders");
+});
+
+app.post("/sellerorders" , async (req,res) => {
     const {sid} = req.body;
     const response =  await database.getSellerOrders(sid);
+    for(let i = 0; i < response.length ; i++)
+        {
+            if (typeof response[i].o_date === 'object' && response[i].o_date instanceof Date) {
+                response[i].o_date = response[i].o_date.toISOString().split("T")[0];
+            }            
+        }
+    res.send(response);
+});
+
+app.post("/sellerpaymentdetails" , async (req,res) => {
+    const {oid} = req.body;
+    const response = await database.getSellerPaymentDetails(oid);
     res.send(response);
 });
 
@@ -268,6 +284,12 @@ app.post('/updatestock' , async (req,res) => {
     const response = await database.updateStock(sid,pid,pqty);
     if(response.serverStatus == 2)
         res.redirect("/stock");
+});
+
+app.post("/updatesellerpayment" , async (req,res) => {
+    const {oid,cid} = req.body;
+    const response = await database.updateSellerPayment(oid,cid);
+    res.send(response);
 })
 
 
