@@ -106,12 +106,14 @@ app.get("/buynow", async (req, res) => {
         for (let i = 0; i < cart.length; i++) {
             const result = await database.getProduct(cart[i].pid);
             result[0].pic_path = "/uploads/" + result[i].pic_path;
+            result[0]["quantity"] = cart[i].quantity;
             products.push(result[0]);
         }
     }
     else if (pid) {
         const result = await database.getProduct(pid);
         result[0].pic_path = "/uploads/" + result[i].pic_path;
+        result[0]["quantity"] = 1;
         products.push(result[0]);
     }
     res.render("buypage", { products });
@@ -131,4 +133,73 @@ app.post("/cart", async (req, res) => {
     }
     res.send(products);
 });
+
+app.post("/buynow" , async (req,res) => {
+    const products = JSON.parse(req.body.products);
+    const cid = req.body.cid;
+    const todayDate = new Date();
+    const formattedDate = todayDate.toISOString().split('T')[0];
+    let totalAmount = 0;
+    for(let i = 0; i < products.length ; i++)
+        {
+            totalAmount += Number(products[i].price) * Number(products[i].quantity);
+        }
+    const response = await database.addOrder(cid , formattedDate , totalAmount);
+    const orderID = response.insertId;
+    for(let i = 0; i < products.length ; i++)
+        {
+            const subTotal = Number(products[i].price) * Number(products[i].quantity);
+            const result = await database.addOrderDetail(orderID , products[i].p_id ,products[i].quantity , subTotal);
+        }
+        res.send("Done");
+});
+
+app.get("/mypurchases" , (req,res) => {
+    res.render("mypurchases");
+})
+
+app.post("/mypurchasesfetch" , async (req,res) => {
+    const cid = req.body.cid;
+    const response = await database.getOrders(cid);
+    for(let i = 0; i < response.length ; i++)
+        {
+            if (typeof response[i].o_date === 'object' && response[i].o_date instanceof Date) {
+                response[i].o_date = response[i].o_date.toISOString().split("T")[0];
+            }            
+        }
+    res.send(response);
+});
+
+app.get("/order-details" , async (req,res) => {
+    const orderID = req.query.oid;
+    const response = await database.getOrderDetails(orderID);
+    for(let i = 0; i < response.length ; i++)
+        {
+            response[i].pic_path = "/uploads/" + response[i].pic_path;
+        }
+        res.render("order-details" , {response});
+});
+
+app.get("/wishlist" , (req,res) =>{
+    res.render("wishlist");
+});
+
+app.post("/wishlistret" , async (req,res) => {
+    console.log(req.body);
+    const cid = req.body.cid;
+    const response = await database.getWishlist(cid);
+    for(let i = 0 ; i < response.length ; i++)
+        {
+            response[i].pic_path = "/uploads/" + response[i].pic_path;
+        }
+    res.send(response);
+});
+
+app.post("/wishlistremove" , async (req,res) => {
+    const {cid,pid} = req.body;
+    const response = await database.removeFromWishlist(cid,pid);
+    res.send(response);
+})
+
+
 

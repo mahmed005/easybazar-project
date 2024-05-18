@@ -35,7 +35,7 @@ exports.getCategoryProducts = async function (categoryID, limit) {
 
 exports.getCategoryProducts = async function (categoryID) {
     const [result] = await pool.query(`
-    SELECT p_id, p_name, pic_path, p_description
+    SELECT p_id, p_name, pic_path, p_description, price
     FROM products
     WHERE cat_id = ?` , [categoryID]);
     return result;
@@ -55,12 +55,11 @@ exports.getCategories = async function () {
 //     VALUES ("p1" , "Laptop" , 3 , "delivery.jpg" , "s1" , "cat1" , "Hello") `); 
 //     return result;
 // }
-
 // addProduct();
 
 exports.getProduct = async function (id) {
     const [result] = await pool.query(`
-    SELECT p_id,p_name,stock,pic_path,p_description
+    SELECT p_id,p_name,stock,pic_path,p_description,price
     FROM products
     WHERE p_id = ?` , [id]);
     return result;
@@ -77,6 +76,53 @@ exports.addToWishlist = async function (productId, customerId) {
     {
         return undefined;
     }
+    return result;
+}
+
+exports.addOrder = async function (cid,todayDate, amount) {
+    const [result] = await pool.query(`
+    INSERT INTO orders
+    VALUES(default , ? , ? , ? , default)` , [cid , todayDate , amount]);
+    return result;
+}
+
+exports.addOrderDetail = async function (orderID , p_id , quantity , subtotal) {
+    const [result] = await pool.query(`
+    INSERT INTO order_details
+    VALUES( ? , ? ,? , ?);
+    ` , [orderID , p_id , quantity , subtotal]);
+    return result;
+}
+
+exports.getOrders = async function(cid) {
+    const [result] = await pool.query(`
+    SELECT * 
+    FROM orders
+    WHERE c_id = ?
+    ` , [cid]);
+    return result;
+}
+
+exports.getOrderDetails = async function(orderID) {
+    const [result] = await pool.query(`
+    SELECT *
+    FROM order_product_details
+    WHERE o_id = ?` , [orderID]);
+    return result;
+}
+
+exports.getWishlist = async function(cid) {
+    const [result] = await pool.query(`
+    SELECT * 
+    FROM wishlist_products
+    WHERE c_id = ?` , [cid]);
+    return result;
+}
+
+exports.removeFromWishlist = async function(cid,pid) {
+    const [result] = await pool.query(`
+    DELETE FROM wishlist
+    WHERE c_id = ? AND  p_id = ?` , [cid,pid]);
     return result;
 }
 

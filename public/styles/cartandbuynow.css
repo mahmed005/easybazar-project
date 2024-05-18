@@ -3,8 +3,8 @@
   padding-left: 30px;
   padding-right: 30px;
 
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 140px;
+  margin-bottom: 100px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
   /* margin-left: auto;
@@ -63,6 +63,7 @@
 
 .payment-summary {
   padding-bottom: 5px;
+  
 }
 
 @media (max-width: 1000px) {
@@ -71,6 +72,7 @@
       1 in the grid. (Normally, the row that an element is
       placed in is determined by the order of the elements in
       the HTML. grid-row overrides this default ordering). */
+      
     grid-row: 1;
     margin-bottom: 12px;
   }
@@ -89,7 +91,7 @@
   /* 100px 1fr 1fr; means the 2nd and 3rd column will
      take up half the remaining space in the grid
      (they will divide up the remaining space evenly). */
-  grid-template-columns: 100px 1fr 1fr;
+  grid-template-columns: 100px 1fr ;
   column-gap: 25px;
 }
 .cart-page-details-grid {
@@ -209,6 +211,7 @@
 }
 
 .payment-summary-money {
+
   text-align: right;
 }
 
@@ -256,24 +259,37 @@
    border-radius: 20px;
   margin-top: 25px;
   margin-bottom: 15px;
-  margin-left: auto;
-  margin-right: auto;
 }
-
 .checkout-button:active{
   color: black;
   background-color: white;
 }
-
+.star {
+  font-size: 2vh;
+  cursor: pointer;
+}
+ 
+.one {
+  color: rgb(255, 0, 0);
+}
+ 
+.two {
+  color: rgb(255, 106, 0);
+}
+ 
+.three {
+  color: rgb(81, 148, 189);
+}
+ 
+.four {
+  color: rgb(200, 200, 8);
+}
+ 
+.five {
+  color: rgb(24, 159, 14);
+}
 
 .quantity-input{
   display: none;
-  width: 30px;
+  width: 35px;
 }
-
-
-.checkout-button-div{
-  display: flex;
-  justify-content: center;
-}
-
