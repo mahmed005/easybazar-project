@@ -185,7 +185,6 @@ app.get("/wishlist" , (req,res) =>{
 });
 
 app.post("/wishlistret" , async (req,res) => {
-    console.log(req.body);
     const cid = req.body.cid;
     const response = await database.getWishlist(cid);
     for(let i = 0 ; i < response.length ; i++)
