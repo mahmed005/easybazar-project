@@ -66,10 +66,9 @@
 								<th>Order Ref#</th>
 								<th>User</th>
 								<th>Amount</th>
-								<th>Payment Mode</th>
+								<th>Payment</th>
 								<th>Status</th>
-								<th>View</th>
-								<th>Delete</th>									
+																
 							</tr>
 						</thead>
 						<tbody>
@@ -78,10 +77,13 @@
 								<td>15895452</td>
 								<td>Kamran</td>
 								<td>1500</td>
-								<td>Cash On Delivery</td>
-								<td>Pending</td>
-								<td>View</td>
-								<td>Delete</td>
+								<td>Unpaid<button class="updatebtn">Update</button></td>
+								<td>   <select >
+									<option value="Pending" selected>Pending</option>
+									<option value="Shipped">Shipped</option>
+									<option value="Completed">Completed</option>
+								</select></td>
+								
 							</tr>
 						</tbody>
 					</table>
