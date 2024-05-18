@@ -6,7 +6,17 @@ const database = require(__dirname + "/database.js");
 const multer = require("multer");
 
 const app = express();
-const upload = multer({ dest: __dirname + "/public/uploads" });
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, __dirname + "/public/uploads");
+    },
+    filename: function (req, file, cb) {
+      cb(null, `${Date.now()}-${file.originalname}`);
+    }
+  })
+  
+const upload = multer({ storage: storage });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -198,6 +208,66 @@ app.post("/wishlistremove" , async (req,res) => {
     const {cid,pid} = req.body;
     const response = await database.removeFromWishlist(cid,pid);
     res.send(response);
+});
+
+app.get("/sellerorders" , async (req,res) => {
+    const {sid} = req.body;
+    const response =  await database.getSellerOrders(sid);
+    res.send(response);
+});
+
+app.get("/sellerproducts" , (req,res) => {
+    res.render("sellerproducts");
+});
+
+app.post("/sellerproducts" , async (req,res) => {
+    const {sid} = req.body;
+    const response = [];
+    const categories = await database.getCategories();
+    const products = await database.getSellerProducts(sid);
+    response.push(categories,products);
+    res.send(response);
+})
+
+app.post("/productsadd" , upload.single('picture') ,  async (req,res,next) => {
+    const picPath = req.file.filename;
+    const {pname,price,stock,desc,sid,category} = req.body;
+    console.log(category);
+    const categories = await database.getCategories();
+    let categoryID;
+    for(let i = 0; i < categories.length; i++)
+        {
+            if(category == categories[i].name)
+                {
+                    categoryID = categories[i].cat_id;
+                    break;
+                }
+        }
+    const response = database.addProduct(pname,price,stock,desc,categoryID,sid,picPath);
+    res.redirect("/sellerproducts");
+});
+
+app.post("/productremove" , (req,res) => {
+    const {sid,pid} = req.body;
+    const response = database.removeProduct(sid,pid);
+    res.redirect("/sellerproducts");
+});
+
+app.get('/stock' , (req,res) => {
+    res.render("stock");
+} );
+
+app.post('/stock' , async (req,res) => {
+    const {sid} = req.body;
+    const response = await database.getSellerProducts(sid);
+    res.send(response);
+});
+
+app.post('/updatestock' , async (req,res) => {
+    const {sid,pid,pqty} = req.body;
+    const response = await database.updateStock(sid,pid,pqty);
+    if(response.serverStatus == 2)
+        res.redirect("/stock");
 })
 
 

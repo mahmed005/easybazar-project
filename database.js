@@ -48,20 +48,34 @@ exports.getCategories = async function () {
     return result;
 }
 
-// async function addProduct()
-// {
-//     const result = await pool.query(`
-//     INSERT INTO products
-//     VALUES ("p1" , "Laptop" , 3 , "delivery.jpg" , "s1" , "cat1" , "Hello") `); 
-//     return result;
-// }
-// addProduct();
+exports.addProduct = async function(pname,price,stock,desc,category,sid,picPath) {
+    const result = await pool.query(`
+    INSERT INTO products
+    VALUES (default , ? , ? , ? , ? , ? , ? , ?) ` , [pname,stock,picPath,sid,category,desc,price]); 
+    return result;
+}
 
 exports.getProduct = async function (id) {
     const [result] = await pool.query(`
     SELECT p_id,p_name,stock,pic_path,p_description,price
     FROM products
     WHERE p_id = ?` , [id]);
+    return result;
+}
+
+exports.removeProduct = async function (sid,pid) {
+    const[result] = await pool.query(`
+    DELETE FROM products
+    WHERE s_id = ? AND p_id = ? ` , [sid,pid]);
+    return result;
+}
+
+
+exports.getSellerProducts = async function(sid) {
+    const[result] = await pool.query(`
+    SELECT * 
+    FROM products 
+    WHERE s_id = ?` , [sid]);
     return result;
 }
 
@@ -125,6 +139,24 @@ exports.removeFromWishlist = async function(cid,pid) {
     WHERE c_id = ? AND  p_id = ?` , [cid,pid]);
     return result;
 }
+
+
+exports.getSellerOrders = async function(sid) {
+    const [result] = await pool.query(`
+    SELECT *
+    FROM order_product_details
+    WHERE s_id = ?` , [sid]);
+    return result;
+}
+
+exports.updateStock = async function(sid,pid,pqty) {
+    const [result] = await pool.query(`
+    UPDATE products
+    SET stock = ?
+    WHERE s_id = ? AND p_id = ?`, [pqty,sid,pid]);
+    return result;
+}
+
 
 
 
