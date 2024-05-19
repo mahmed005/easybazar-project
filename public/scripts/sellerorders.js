@@ -49,7 +49,9 @@ async function renderOrders() {
                                 <option value="Pending" selected>Pending</option>
                                 <option value="Shipped">Shipped</option>
                                 <option value="Completed">Completed</option>
-                            </select></td>
+                            </select> 
+                            <button value="${paymentStatus}" data-oid="${responseData[i].o_id}" data-cid="${responseData[i].c_id}" class="updatebtn js-update-order-status">Update</button>
+                            </td>
                         </tr>`
         }
 
@@ -81,5 +83,9 @@ async function renderOrders() {
             } else {
                 button.style.display = "none";
             }
-        })
+        });
+
+        const statusSelectInputs = document.querySelectorAll(".js-update-status");
+        statusSelectInputs.forEach(input => {
+        });
 }
