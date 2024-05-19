@@ -293,3 +293,21 @@
   display: none;
   width: 35px;
 }
+
+.updatebtn{
+	background-color: black;
+	color: white;
+	margin-left: 10px;
+	border: none;
+	padding: 5px;
+	border-radius: 8px;
+	transition: 0.15;
+}
+.updatebtn:hover{
+	cursor: pointer;}
+
+.updatebtn:active{
+	background-color:white ;
+	color:  black;
+	
+}

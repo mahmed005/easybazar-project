@@ -190,6 +190,12 @@ app.get("/order-details" , async (req,res) => {
         res.render("order-details" , {response});
 });
 
+app.post("/removeorder" , async  (req,res) => {
+    const {oid} = req.body;
+    const result = await database.removeOrder(oid);
+    res.send(result);
+})
+
 app.get("/wishlist" , (req,res) =>{
     res.render("wishlist");
 });
@@ -259,7 +265,22 @@ app.post("/productsadd" , upload.single('picture') ,  async (req,res,next) => {
                     break;
                 }
         }
-    const response = database.addProduct(pname,price,stock,desc,categoryID,sid,picPath);
+    const sellerCategories = await database.getSellerCategories(sid);
+    let isOldCategory = false;
+    if(sellerCategories.length == 2)
+        {
+            for(let i = 0; i < sellerCategories.length ; i++)
+                {
+                    if(sellerCategories[i].cat_id == categoryID)
+                    {
+                        isOldCategory = true;
+                    }
+                } 
+        }
+        if(isOldCategory)
+            {
+                const response = database.addProduct(pname,price,stock,desc,categoryID,sid,picPath);
+            }
     res.redirect("/sellerproducts");
 });
 
@@ -297,6 +318,21 @@ app.post("/updatesellerorderstatus" , async (req,res) => {
     const response =  await database.updateSellerOrderStatus(oid,status);
     const paymentResponse = await database.updateSellerPayment(oid,cid);
     res.send(response);
+});
+
+app.get('/category' , (req,res) => {
+    res.render("admincategory");
+});
+
+app.get('/getcategories' , async (req,res) => {
+    const response = await database.getCategories();
+    res.send(response);
+});
+
+app.post('/category' , async (req,res) => {
+    const {cat_name} = req.body;
+    const response = await database.addCategory(cat_name);
+    res.redirect('/category');
 })
 
 

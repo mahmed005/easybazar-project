@@ -188,6 +188,33 @@ exports.updateSellerOrderStatus = async function(oid,status) {
     return result;
 }
 
+exports.getSellerCategories = async function(sid) {
+    const [result] = await pool.query(`
+    SELECT DISTINCT cat_id
+    FROM products
+    WHERE s_id = ?` , [sid]);
+    return result;
+}
+
+exports.removeOrder = async function(oid) {
+    const [result] = await pool.query(`
+    DELETE FROM order_details
+    WHERE o_id = ?` , [oid]);
+    let result2;
+    if(result){
+     [result2] = await pool.query(`
+    DELETE FROM orders
+    WHERE o_id = ?` , [oid]);
+    }
+    return result2;
+}
+
+exports.addCategory = async function(catName) {
+    const [result] = await pool.query(`
+    INSERT INTO category
+    VALUES(default,?)` , [catName]);
+    return result;
+}
 
 
 
