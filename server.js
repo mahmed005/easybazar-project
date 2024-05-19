@@ -290,6 +290,12 @@ app.post("/updatesellerpayment" , async (req,res) => {
     const {oid,cid} = req.body;
     const response = await database.updateSellerPayment(oid,cid);
     res.send(response);
+});
+
+app.post("/updatesellerorderstatus" , async (req,res) => {
+    const {oid,status} = req.body;
+    const response =  await database.updateSellerOrderStatus(oid,status);
+    res.send(response);
 })
 
 

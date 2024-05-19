@@ -87,5 +87,6 @@ async function renderOrders() {
 
         const statusSelectInputs = document.querySelectorAll(".js-update-status");
         statusSelectInputs.forEach(input => {
+            
         });
 }

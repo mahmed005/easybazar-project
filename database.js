@@ -180,6 +180,14 @@ exports.updateSellerPayment = async function(oid,cid) {
     return result;
 }
 
+exports.updateSellerOrderStatus = async function(oid,status) {
+    const [result] = await pool.query(`
+    UPDATE orders
+    SET o_status = ?
+    WHERE o_id = ?` , [status,oid]);
+    return result;
+}
+
 
 
 
