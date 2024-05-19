@@ -6,7 +6,17 @@ const database = require(__dirname + "/database.js");
 const multer = require("multer");
 
 const app = express();
-const upload = multer({ dest: __dirname + "/public/uploads" });
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, __dirname + "/public/uploads");
+    },
+    filename: function (req, file, cb) {
+      cb(null, `${Date.now()}-${file.originalname}`);
+    }
+  })
+  
+const upload = multer({ storage: storage });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -180,6 +190,12 @@ app.get("/order-details" , async (req,res) => {
         res.render("order-details" , {response});
 });
 
+app.post("/removeorder" , async  (req,res) => {
+    const {oid} = req.body;
+    const result = await database.removeOrder(oid);
+    res.send(result);
+})
+
 app.get("/wishlist" , (req,res) =>{
     res.render("wishlist");
 });
@@ -198,6 +214,125 @@ app.post("/wishlistremove" , async (req,res) => {
     const {cid,pid} = req.body;
     const response = await database.removeFromWishlist(cid,pid);
     res.send(response);
+});
+
+app.get("/sellerorders" ,  (req,res) => {
+    res.render("sellerorders");
+});
+
+app.post("/sellerorders" , async (req,res) => {
+    const {sid} = req.body;
+    const response =  await database.getSellerOrders(sid);
+    for(let i = 0; i < response.length ; i++)
+        {
+            if (typeof response[i].o_date === 'object' && response[i].o_date instanceof Date) {
+                response[i].o_date = response[i].o_date.toISOString().split("T")[0];
+            }            
+        }
+    res.send(response);
+});
+
+app.post("/sellerpaymentdetails" , async (req,res) => {
+    const {oid} = req.body;
+    const response = await database.getSellerPaymentDetails(oid);
+    res.send(response);
+});
+
+app.get("/sellerproducts" , (req,res) => {
+    res.render("sellerproducts");
+});
+
+app.post("/sellerproducts" , async (req,res) => {
+    const {sid} = req.body;
+    const response = [];
+    const categories = await database.getCategories();
+    const products = await database.getSellerProducts(sid);
+    response.push(categories,products);
+    res.send(response);
+})
+
+app.post("/productsadd" , upload.single('picture') ,  async (req,res,next) => {
+    const picPath = req.file.filename;
+    const {pname,price,stock,desc,sid,category} = req.body;
+    console.log(category);
+    const categories = await database.getCategories();
+    let categoryID;
+    for(let i = 0; i < categories.length; i++)
+        {
+            if(category == categories[i].name)
+                {
+                    categoryID = categories[i].cat_id;
+                    break;
+                }
+        }
+    const sellerCategories = await database.getSellerCategories(sid);
+    let isOldCategory = false;
+    if(sellerCategories.length == 2)
+        {
+            for(let i = 0; i < sellerCategories.length ; i++)
+                {
+                    if(sellerCategories[i].cat_id == categoryID)
+                    {
+                        isOldCategory = true;
+                    }
+                } 
+        }
+        if(isOldCategory)
+            {
+                const response = database.addProduct(pname,price,stock,desc,categoryID,sid,picPath);
+            }
+    res.redirect("/sellerproducts");
+});
+
+app.post("/productremove" , (req,res) => {
+    const {sid,pid} = req.body;
+    const response = database.removeProduct(sid,pid);
+    res.redirect("/sellerproducts");
+});
+
+app.get('/stock' , (req,res) => {
+    res.render("stock");
+} );
+
+app.post('/stock' , async (req,res) => {
+    const {sid} = req.body;
+    const response = await database.getSellerProducts(sid);
+    res.send(response);
+});
+
+app.post('/updatestock' , async (req,res) => {
+    const {sid,pid,pqty} = req.body;
+    const response = await database.updateStock(sid,pid,pqty);
+    if(response.serverStatus == 2)
+        res.redirect("/stock");
+});
+
+app.post("/updatesellerpayment" , async (req,res) => {
+    const {oid,cid} = req.body;
+    const response = await database.updateSellerPayment(oid,cid);
+    res.send(response);
+});
+
+app.post("/updatesellerorderstatus" , async (req,res) => {
+    const {oid,status,cid} = req.body;
+    const response =  await database.updateSellerOrderStatus(oid,status);
+    const paymentResponse = await database.updateSellerPayment(oid,cid);
+    res.send(response);
+});
+
+app.get('/category' , (req,res) => {
+    res.render("admincategory");
+});
+
+app.get('/getcategories' , async (req,res) => {
+    const response = await database.getCategories();
+    res.send(response);
+});
+
+app.post('/category' , async (req,res) => {
+    const {cat_name} = req.body;
+    const response = await database.addCategory(cat_name);
+    res.redirect('/category');
 })
 
 

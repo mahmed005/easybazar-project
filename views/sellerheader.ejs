@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ 	<head>
+ 		<!-- Meta Tags -->
+		<meta charset="UTF-8">
+		<meta name="author" content="Ch Daniyal Akhtar">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Title -->
+ 		<title>Home</title>
+ 		<!-- Style Sheet -->
+		<link rel="stylesheet"  href="/styles/sellerandadminstyles.css">
+        <link rel="stylesheet"  href="/styles/HeaderandFooter.css">
+        <% if (typeof additionalCss !== 'undefined') { %>
+            <% additionalCss.forEach(cssFile => { %>
+                <link rel="stylesheet" href="<%= cssFile %>">
+            <% }); %>
+        <% } %>
+ 	</head>
+<body>
+
+
+<header>
+    <div class="container">
+        <div class="brand">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="/images/Logo.png" class="logoimg">
+                    <div class="logo-text">
+                        <p class="big-logo">EASYBAZAR</p>
+                        <p class="small-logo">online store</p>
+                    </div>
+                </a>
+            </div> <!-- logo -->
+            <div class="shop-icon">
+                <div class="dropdown">
+                    <img src="../Images/icons/account.png">
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a href="#">My Account</a></li>								
+                            <li><a href="#">Settings</a></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div> <!-- shop icons -->
+        </div> <!-- brand -->
+    </div> <!-- container -->
+</header> <!-- header -->

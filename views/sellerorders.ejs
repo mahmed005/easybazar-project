@@ -1,0 +1,42 @@
+<%- include("sellerheader")%>
+
+<main>
+		
+    <div class="main-content">
+        <div class="sidebar">
+            <h3>Menu</h3>
+            <ul>
+                <li><a  href="index.html">Home</a></li>
+                <li><a class="active">Orders</a></li>
+                <li><a href="/sellerproducts">Product</a></li>
+                <li><a href="/stock">Stock</a></li>
+                
+            </ul>
+        </div>
+        <div class="content">
+            <h3>Order</h3>
+        <div class="marginorder">
+            <div class="content-detail">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Order Ref#</th>
+                            <th>User</th>
+                            <th>Amount</th>
+                            <th>Payment</th>
+                            <th>Status</th>                               
+                        </tr>
+                    </thead>
+                    <tbody id="js-table">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>		
+
+</main> <!-- Main Area -->
+
+<script src="/scripts/sellerorders.js"></script>
+<%-include("footer")%>

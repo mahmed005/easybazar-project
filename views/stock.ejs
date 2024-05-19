@@ -1,0 +1,65 @@
+<%- include("sellerheader") %>
+
+
+<main>
+		
+    <div class="main-content">
+        <div class="sidebar">
+            <h3>Menu</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="/sellerorders">Orders</a></li>
+                <li><a href="/sellerproducts">Product</a></li>
+                <li><a class="active">Stock</a></li>
+                
+            </ul>				
+        </div>
+        <div class="content">
+            <h3>Stock</h3>
+            <div class="content-data">
+                <div class="content-form">
+                    <form action="/updatestock" , method="post">
+                        <h4>Add Stock</h4>
+                        <input type="hidden" name="sid" id="sid">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label>Product Name</label>
+                                <select name="pid" id="js-select">
+                                    
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <input type="text" name="pqty">
+                            </div>
+                        </div>										
+                        <div class="form-group">
+                            <label></label>
+                            <input type="submit" name="addStock" value="Add Stock">
+                        </div>
+                    </form>
+                </div>
+                <div class="content-detail">
+                    <h4>All Stock Detail</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Stock in</th>
+                                <th>Available</th>
+                            </tr>
+                        </thead>
+                        <tbody id="js-table">
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>		
+
+</main> <!-- Main Area -->
+
+<script src="/scripts/stock.js" ></script>
+<%- include("footer") %>
