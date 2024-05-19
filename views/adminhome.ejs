@@ -1,0 +1,75 @@
+<%- include("sellerheader") %>
+
+
+<main>
+		
+    <div class="main-content">
+        <div class="sidebar">
+            <h3>Menu</h3>
+            <ul>
+                <li><a class="active" href="index.html">Home</a></li>
+            
+                <li><a href="category.html">Category</a></li>
+            
+                
+            </ul>				
+        </div>
+        <div class="content dashboard">
+            
+            <h3>Dashboard</h3>
+            <div class="content-data">
+                <div class="content-detail">
+                    <h4>Statistics</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Total Customers</th>
+                                <th>Total Sellers</th>
+                                <th>Total Revenue</th>
+                                <th>Total Orders</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><%=response[0][0].count%></td>
+                                <td><%=response[1][0].count%></td>
+                                <td>PKR <%=response[3][0].sum%></td>
+                                <td><%=response[2][0].count%></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <%if(response[4].length == 0) {%>
+                    <div class="Discount-box">
+                        <h1 class="Discount-heading">Apply Discount</h1>
+                        <p class="disctxt">Enter Discount Amount:</p>
+                        
+                        <form action="/adminhome" method="post" style="display: inline;">
+                            <tr> <td><input type="text" placeholder="" class="inputbox" name="percentage" required></td></tr>
+                            <button  type="submit" name="button" value="upload" class="Apply-button">Apply</button>
+                        </form>
+                        
+                    </div>
+                    <%} else {%>
+                        <div class="Discount-box">
+                            <h1 class="Discount-heading">Remove Discount</h1>
+                            <p class="disctxt">Discount Percentage: <%= response[4][0].percentage%></p>
+                            
+                            <form action="/adminhome" method="post" style="display: inline;">
+                                <button type="submit" value="<%= response[4][0].d_id%>" name="button" class="Apply-button">Remove</button>
+                            </form>
+                            
+                        </div> 
+                    <%}%>
+                </div>
+            
+             </div>
+            
+            </div>
+           
+        </div>
+        
+    </div>
+            
+
+</main> <!-- Main Area -->
+<%- include("footer") %>

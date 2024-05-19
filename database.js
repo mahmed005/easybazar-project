@@ -216,6 +216,51 @@ exports.addCategory = async function(catName) {
     return result;
 }
 
+exports.getAdminData = async function() {
+    const [cResult] = await pool.query(`
+    SELECT COUNT(c_id) AS count
+    FROM customer`);
+    const [sResult] = await pool.query(`
+    SELECT COUNT(s_id) AS count
+    FROM seller`);
+    const [oResult] =  await pool.query(`
+    SELECT COUNT(o_id) AS count
+    FROM orders`);
+    const [sumResult] = await pool.query(`
+    SELECT SUM(amount) AS sum
+    FROM orders`);
+    const [dResult] = await pool.query(`
+    SELECT *
+    FROM discounts`);
+    const result = [cResult,sResult,oResult,sumResult,dResult];
+    return result;
+}
+
+exports.addDiscount = async function(percentage) {
+    const [result] = await pool.query(`
+    INSERT INTO discounts
+    VALUES(default,?)`,[percentage]);
+    await pool.query(`
+    UPDATE products
+    SET price = price - ((price*?)/100) `,[percentage]);
+    return result;
+}
+
+exports.removeDiscount = async function(discountID) {
+    const [result2] = await pool.query(`
+    SELECT percentage 
+    FROM discounts
+    WHERE d_id = ?`,[discountID]);
+    const percentage = result2[0].percentage;
+    await pool.query(`
+    UPDATE products
+    SET price = (100*price)/(100-?)`,[percentage]);
+    const [result] = await pool.query(`
+    DELETE FROM discounts
+    WHERE d_id = ?` , [discountID]);
+    return result;
+}
+
 
 
 
