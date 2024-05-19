@@ -293,8 +293,9 @@ app.post("/updatesellerpayment" , async (req,res) => {
 });
 
 app.post("/updatesellerorderstatus" , async (req,res) => {
-    const {oid,status} = req.body;
+    const {oid,status,cid} = req.body;
     const response =  await database.updateSellerOrderStatus(oid,status);
+    const paymentResponse = await database.updateSellerPayment(oid,cid);
     res.send(response);
 })
 
