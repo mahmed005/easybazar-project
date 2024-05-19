@@ -36,6 +36,7 @@ async function renderOrders() {
                 else {
                     paymentStatus = "Paid";
                 }
+                let shipmentCompleted=(responseData[i].o_status==="Completed");
 
             tableHTML += `
             <tr>
@@ -46,11 +47,11 @@ async function renderOrders() {
                             <td>${paymentStatus}<button value="${paymentStatus}" data-oid="${responseData[i].o_id}" data-cid="${responseData[i].c_id}" class="updatebtn">Update</button></td>
                             <td>${responseData[i].o_status}
                             <select style="display:none;" class="js-update-status">
-                                <option value="Pending" selected>Pending</option>
-                                <option value="Shipped">Shipped</option>
-                                <option value="Completed">Completed</option>
+                                <option value="Pending" ${responseData[i].o_status==="Pending" ? `selected` : ''}>Pending</option>
+                                <option value="Shipped" ${responseData[i].o_status==="Shipped" ? `selected` : ''}>Shipped</option>
+                                <option value="Completed" ${shipmentCompleted ? `selected` : ''}>Completed</option>
                             </select> 
-                            <button value="${paymentStatus}" data-oid="${responseData[i].o_id}" data-cid="${responseData[i].c_id}" class="updatebtn js-update-order-status">Update</button>
+                            <button value="${paymentStatus}" data-oid="${responseData[i].o_id}" data-cid="${responseData[i].c_id}" class="updatebtn js-update-order-status" ${shipmentCompleted ? 'style="display:none;"' : ''}>Update</button>
                             </td>
                         </tr>`
         }
@@ -85,7 +86,44 @@ async function renderOrders() {
             }
         });
 
-        const statusSelectInputs = document.querySelectorAll(".js-update-status");
-        statusSelectInputs.forEach(input => {
+        const statusSelectInputs = document.querySelectorAll(".js-update-order-status");
+        statusSelectInputs.forEach(button => {
+            const { oid, cid } = button.dataset;
+            button.addEventListener("click", () => {
+                const parent = button.parentElement;
+                const statusText = parent.childNodes[0];
+                const statusSelect = parent.querySelector(".js-update-status");
+    
+                statusText.style.display = "none";
+                statusSelect.style.display = "inline-block";
+                button.textContent = "Save";
+                button.classList.add("save-status");
+    
+                button.addEventListener("click", async () => {
+                    if (button.classList.contains("save-status")) {
+                        const newStatus = statusSelect.value;
+                        const updateStatus = await fetch("/updateOrderStatus", {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ oid, cid, newStatus })
+                        });
+                        const updateStatusData = await updateStatus.json();
+    
+                        if (updateStatusData.serverStatus == 2) {
+                            statusText.textContent = newStatus;
+                            statusText.style.display = "inline-block";
+                            statusSelect.style.display = "none";
+                            button.textContent = "Update";
+                            button.classList.remove("save-status");
+    
+                            if (newStatus === "Completed") {
+                                button.style.display = "none";
+                            }
+                        }
+                    }
+                });
+            });
         });
 }

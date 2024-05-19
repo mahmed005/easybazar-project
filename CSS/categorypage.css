@@ -6,13 +6,13 @@
  } 
 
 .image-div {
-    flex-shrink: 0; /* Prevent image from shrinking */
-    margin-right: 20px; /* Add space between image and text */
+    flex-shrink: 0;
+    margin-right: 20px; 
 }
 
 .productDiv {
     display: flex;
-    align-items: flex-start; /* Align items at the start */
+    align-items: flex-start; 
 }
 
 .description-div {
