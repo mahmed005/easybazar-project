@@ -46,4 +46,9 @@ async function getSellerDashboard() {
     
     tableConatiner.innerHTML = tableHTML; 
     stockTable.innerHTML = stockHTML;
+
+    if(responseData[1][0].reports >= 50)
+        {
+            document.querySelector(".Warning-box").style.display = "block";
+        }
 }
