@@ -18,12 +18,22 @@
             <h1 class="signupheading">Log in</h1>
             <form id="loginForm" action="/login" class="login-form" method="post">
                 <table>
+                    <td >
+                        <div id="signupchoice">
+                        <label for="option1">
+                            Buyer
+                        </label>
+                        <input type="radio" name="option" id="option1" value="buyer">
+                        <label for="option2">Seller</label>
+                        <input type="radio" name="option" id="option2" value="seller">
+                    </div>
+                    </td>
                     <tr>
-                        <td><input type="text" class="inputbox" placeholder="Email" name="email" required
+                        <td><input type="text" class="inputbox email" placeholder="Email" name="email" required
                                 id="LoginEmail"></td>
                     </tr>
                     <tr>
-                        <td><input type="password" class="inputbox" placeholder="Password" name="password" required
+                        <td><input type="password" class="inputbox password" placeholder="Password" name="password" required
                                 id="LoginPassword"></td>
                     </tr>
                 </table>
@@ -42,6 +52,20 @@
                 <h1 class="signupheading">Signup</h1>
                 <form id="signupForm" action="/signup" method="post">
                     <table>
+                        <tr>
+                            <td >
+                                <div id="signupchoice">
+                                <label for="option1">
+                                    Buyer
+                                </label>
+                                <input type="radio" name="option" id="option1" value="buyer">
+                                <label for="option2">Seller</label>
+                                <input type="radio" name="option" id="option2" value="seller">
+                                <label for="option3">Both</label>
+                                <input type="radio" name="option" id="option3" value="both">
+                            </div>
+                            </td>
+                        </tr>
                         <tr>
                             <td><input type="text" placeholder="First Name" class="inputbox" name="firstName" required>
                             </td>
@@ -69,7 +93,7 @@
                     <input type="submit" id="signupButton" class="signupbtn">
                 </form>
             </div>
-            <% } %>
+            <%}%>
+            <script src="/scripts/login.js"></script>
 </body>
-
 </html>

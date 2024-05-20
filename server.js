@@ -33,19 +33,26 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password , option} = req.body;
     const result = await database.getPassword(email);
-    console.log(result);
+    const userId = result[0].u_id;
     if (!result[0].password) {
-        res.send("You entered the wrong email");
+        res.send({message: "no"});
     }
     const isValid = await bcrypt.compare(password, result[0].password);
     if (isValid) {
-        res.redirect("/home");
-        return;
+        if(option === "buyer") {
+            const response = await database.getCustomer(userId);
+            res.send(response);
+            return;
+        } else {
+            const response = await database.getSeller(userId);
+            res.send(response);
+            return;
+        }
     }
     else {
-        res.send("Login failed");
+        res.send({message: "no"});
     }
 });
 
@@ -53,7 +60,10 @@ app.get("/signup", async (req, res) => {
     res.render("loginandsignup", { type: "Sign up" });
 });
 
-app.post("/signup", (req, res) => {
+app.post("/signup", async (req, res) => {
+    const {option,firstName,lastName,email,phNum,password} = req.body;
+    const hashPassword = await bcrypt.hash(password, 10);
+    const response = await database.enterUser(option,firstName,lastName,email,phNum,hashPassword);
     res.redirect("/login");
 })
 
@@ -287,6 +297,8 @@ app.post("/productsadd", upload.single('picture'), async (req, res, next) => {
                 isOldCategory = true;
             }
         }
+    } else {
+        const response = await database.addProduct(pname, price, stock, desc, categoryID, sid, picPath);
     }
     if (isOldCategory) {
         const response = database.addProduct(pname, price, stock, desc, categoryID, sid, picPath);
