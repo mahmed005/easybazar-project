@@ -321,3 +321,12 @@ footer .footer-bar .copyright-text p{
 	background-color:  white;
 	color: black;
 }
+
+.Warning-box{
+	
+	width: 80%;
+	border-radius: 15px;
+	
+	padding-bottom: 10px;
+	background-color: #f1f1f1;
+}

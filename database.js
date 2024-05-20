@@ -259,6 +259,23 @@ exports.removeDiscount = async function(discountID) {
     DELETE FROM discounts
     WHERE d_id = ?` , [discountID]);
     return result;
+};
+
+exports.getSellerDetails = async function(sid) {
+    const [result] = await pool.query(`
+    SELECT * 
+    FROM seller
+    WHERE s_id = ?` , [sid]);
+    return result;
+}
+
+exports.getLowStockReport = async function(sid) {
+    const [result] = await pool.query(`
+    SELECT * 
+    FROM seller
+    natural join products
+    WHERE s_id = ?` , [sid]);
+    return result;
 }
 
 

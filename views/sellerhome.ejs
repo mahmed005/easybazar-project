@@ -1,0 +1,66 @@
+<%- include("sellerheader") %>
+
+<main>
+		
+    <div class="main-content">
+        <div class="sidebar">
+            <h3>Menu</h3>
+            <ul>
+                <li><a class="active">Home</a></li>
+                <li><a href="/sellerorders">Orders</a></li>
+                <li><a href="/sellerproducts">Product</a></li>
+                <li><a href="/stock">Stock</a></li>
+                
+            </ul>				
+        </div>
+        <div class="content dashboard">
+            
+            <h3>Dashboard</h3>
+            <div class="content-data">
+            
+                <div class="content-detail">
+                    <h4>Statistics</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Total Orders</th>
+                                <th>Total Revenue</th>
+                                <th>Reports</th>
+                                                                
+                            </tr>
+                        </thead>
+                        <tbody class="js-dashboard-table">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="content-detail">
+                    <h4>Low Stock Report</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                            </tr>
+                        </thead>
+                        <tbody class="js-stock-table">
+                            
+                        </tbody>
+                    </table>
+                </div>
+             <div class="Warning-box">
+                        <h1 class="Discount-heading">Warning:</h1>
+                        <p class="disctxt">We are writing to inform you that your seller account has received multiple reports and negative ratings. These issues include product quality, customer service, shipping delays, and product authenticity concerns.
+                            Immediate corrective action is required to address these issues and improve your ratings. Continued negative feedback may result in further action, including possible suspension of your seller account.
+                            Please address these concerns urgently to avoid any disruption to your account.</p>
+                        
+                       
+                    </div>
+            </div>
+        </div>
+    </div>		
+
+</main> <!-- Main Area -->
+<script src="/scripts/sellerhome.js"></script>
+
+<%- include("footer") %>

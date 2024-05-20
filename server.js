@@ -211,6 +211,28 @@ app.post("/wishlistremove", async (req, res) => {
     res.send(response);
 });
 
+app.get('/sellerhome' , async (req,res) => {
+    res.render("sellerhome");
+});
+
+app.post("/sellerhome" , async (req,res) => {
+    const {sid} = req.body;
+    const lowStockReport = [];
+    const sellerOrders = await database.getSellerOrders(sid);
+    const sellerDetails = await database.getSellerDetails(sid);
+    const StockReport = await database.getLowStockReport(sid);
+    for(let i = 0; i <  StockReport.length; i++)
+        {
+            if(StockReport[i].stock <= 10)
+                {
+                    lowStockReport.push(StockReport[i]);
+                }
+        }
+    const response = [sellerOrders,sellerDetails,lowStockReport];
+    console.log(response);
+    res.send(response);
+})
+
 app.get("/sellerorders", (req, res) => {
     res.render("sellerorders");
 });
@@ -337,7 +359,9 @@ app.post('/adminhome', async (req, res) => {
         const response = await database.removeDiscount(button);
     }
     res.redirect("/adminhome");
-})
+});
+
+
 
 
 
