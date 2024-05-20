@@ -290,15 +290,15 @@
 }
  
 .one {
-  color: rgb(255, 0, 0);
+  color:  rgb(200, 200, 8);
 }
  
 .two {
-  color: rgb(255, 106, 0);
+  color:  rgb(200, 200, 8);
 }
  
 .three {
-  color: rgb(81, 148, 189);
+  color:  rgb(200, 200, 8);
 }
  
 .four {
@@ -306,9 +306,19 @@
 }
  
 .five {
-  color: rgb(24, 159, 14);
+  color:  rgb(200, 200, 8);
 }
 
 .quantity-input{
   display: none;
+}
+.Reviewbox{
+  margin-top: 8px;
+  border: none;
+  resize: none;
+  border-radius: 15px;
+  margin-bottom: 0px;
+  padding: 10px;
+  font-size: medium;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
