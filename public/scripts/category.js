@@ -1,4 +1,6 @@
-const aid = localStorage.getItem("aid") || 1;
+const object = JSON.parse(localStorage.getItem("aid"))
+
+const aid = object.aid;
 
 const tableContainer = document.querySelector(".js-table");
 

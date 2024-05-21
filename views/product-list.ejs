@@ -18,6 +18,12 @@
                             <p class="text-container" onclick="toggleText(this)">
                                 <%= products[i].p_description%>
                             </p>
+                            <%if(products[i]["reviews"].length != 0) {%>
+                            <h2 style="margin-bottom: 0px;">Reviews</h2>
+                            <%for(let j = 0; j < products[i]["reviews"].length ; j++) {%>
+                                <p style="margin-top: 5px;"><%= products[i]["reviews"][j].review%></p>
+                                <%}%>
+                                <%}%>
                         </div>
                         <div class="buttons-div">
                             <p class="headtxt">Availability: </p>

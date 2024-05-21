@@ -1,0 +1,85 @@
+<%- include("header") %>
+
+    <% additionalCss=['/styles/cartandbuynow.css']; %>
+
+        <div class="main">
+            <div class="page-title">Review your Cart</div>
+
+            <form action="/revieworder" method="post">
+
+                <div class="checkout-grid">
+                    <div class="order-summary">
+                        <% for(let i=0; i < response.length ; i++) {%>
+                            <div class="cart-page-container">
+                                <div class="cart-page-details-grid">
+                                    <img class="product-image" src="<%=response[i].pic_path%>">
+                                    <div class="cart-item-details">
+                                        <div class="product-page-name">
+                                            <%=response[i].p_name%>
+                                        </div>
+                                        <div class="product-price">
+                                            <%=response[i].price%>
+                                        </div>
+                                        <div class="product-quantity">
+                                            <span>
+                                                Quantity: <span class="quantity-label">
+                                                    <%=response[i].quantity%>
+                                                </span>
+                                            </span>
+                                            <span class="update-quantity-link link-primary">
+                                                Review:
+                                            </span>
+                                            <label for="star<%= response[i].p_id%>">Enter Rating</label>
+                                            <input type="number" name="stars" id="star<%= response[i].p_id%>" min="1" max="5">
+                                            <textarea rows="4" cols="60" class="Reviewbox" placeholder="Review" name="review"></textarea>
+                                            <input type="hidden" name="pid" value="<%= response[i].p_id %>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <%}%>
+                    </div>
+                </div>
+                <input type="hidden" name="cid" id="cid">
+                <button type="submit" name="quantity" value="<%= response.length %>" class="checkout-button">Save Review</button>
+            </form>
+        </div>
+
+        <script>
+
+            const cidInput = document.querySelector("#cid");
+
+            const object = JSON.parse(localStorage.getItem("cid"));
+            const cid = object.cid;
+
+            cidInput.value = cid;
+            let stars = 
+    document.getElementsByClassName("star");
+let output = 
+    document.getElementById("output");
+ 
+// Funtion to update rating
+function gfg(n) {
+    remove();
+    for (let i = 0; i < n; i++) {
+        if (n == 1) cls = "one";
+        else if (n == 2) cls = "two";
+        else if (n == 3) cls = "three";
+        else if (n == 4) cls = "four";
+        else if (n == 5) cls = "five";
+        stars[i].className = "star " + cls;
+    }
+    output.innerText = "Rating is: " + n + "/5";
+}
+ 
+// To remove the pre-applied styling
+function remove() {
+    let i = 0;
+    while (i < 5) {
+        stars[i].className = "star";
+        i++;
+    }
+}
+        </script>
+
+        <%- include("footer") %>

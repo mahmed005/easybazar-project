@@ -32,6 +32,22 @@ app.get("/login", (req, res) => {
     res.render("loginandsignup", { type: "Log in" });
 });
 
+app.get("/adminlogin" , (req,res) => {
+    res.render("adminlogin");
+});
+
+app.post("/adminlogin" , async (req,res) => {
+    const { email, password} = req.body;
+    const result = await database.getAdmin(email,password);
+    if(result.length == 0)
+        {
+            res.send({message: "no"});
+            return;
+        }
+    const adminId = result[0].a_id;
+    res.send({adminId});
+});
+
 app.post("/login", async (req, res) => {
     const { email, password , option} = req.body;
     const result = await database.getPassword(email);
@@ -65,7 +81,7 @@ app.post("/signup", async (req, res) => {
     const hashPassword = await bcrypt.hash(password, 10);
     const response = await database.enterUser(option,firstName,lastName,email,phNum,hashPassword);
     res.redirect("/login");
-})
+});
 
 
 app.post("/userchoice", (req, res) => {
@@ -94,7 +110,9 @@ app.get("/products", async (req, res) => {
     const catId = req.query.category;
     const products = await database.getCategoryProducts(catId);
     for (let j = 0; j < products.length; j++) {
+        const reviews = await database.getReviews(products[j].p_id);
         products[j].pic_path = "/uploads/" + products[j].pic_path;
+        products[j]["reviews"] = reviews;
     }
     res.render("product-list", { products });
 });
@@ -125,7 +143,7 @@ app.get("/buynow", async (req, res) => {
         cart = JSON.parse(decodeURIComponent(cart));
         for (let i = 0; i < cart.length; i++) {
             const result = await database.getProduct(cart[i].pid);
-            result[0].pic_path = "/uploads/" + result[i].pic_path;
+            result[0].pic_path = "/uploads/" + result[0].pic_path;
             result[0]["quantity"] = cart[i].quantity;
             products.push(result[0]);
         }
@@ -148,7 +166,7 @@ app.post("/cart", async (req, res) => {
     const cart = req.body;
     for (let i = 0; i < cart.length; i++) {
         const result = await database.getProduct(cart[i].pid);
-        result[0].pic_path = "/uploads/" + result[i].pic_path;
+        result[0].pic_path = "/uploads/" + result[0].pic_path;
         products.push(result[0]);
     }
     res.send(products);
@@ -239,7 +257,6 @@ app.post("/sellerhome" , async (req,res) => {
                 }
         }
     const response = [sellerOrders,sellerDetails,lowStockReport];
-    console.log(response);
     res.send(response);
 })
 
@@ -373,7 +390,21 @@ app.post('/adminhome', async (req, res) => {
     res.redirect("/adminhome");
 });
 
+app.get("/revieworder" , async (req,res) => {
+    const orderID = req.query.oid;
+    const response = await database.getOrderDetails(orderID);
+    for (let i = 0; i < response.length; i++) {
+        response[i].pic_path = "/uploads/" + response[i].pic_path;
+    }
+    res.render("revieworder", { response });
+});
 
-
-
-
+app.post("/revieworder" , async (req,res) => {
+    const{stars,review,pid,cid,quantity} = req.body;
+    const todayDate = new Date();
+    const formattedDate = todayDate.toISOString().split('T')[0];
+    for(let i = 0; i  < quantity ; i++ ) {
+        await database.addReview(review[i],pid[i],cid,stars[i],formattedDate);
+    }
+    res.redirect("/home");
+});

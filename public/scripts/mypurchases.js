@@ -1,6 +1,8 @@
 let contentContainer = document.querySelector("#content-container");
 
-const cid = localStorage.getItem("cid") || 1;
+const object = JSON.parse(localStorage.getItem("cid"))
+
+const cid = object.cid;
 
 fetchOrderData();
 
@@ -25,6 +27,8 @@ async function fetchOrderData() {
                     <div class="product-page-name">
                       Order # : <span >${responseData[i].o_id}</span>
                       <button  class="js-delete updatebtn" data-oid="${responseData[i].o_id}" data-status="${responseData[i].o_status}">Delete</button>
+                      <button class="js-review updatebtn" data-oid="${responseData[i].o_id}" data-status="${responseData[i].o_status}">Review</button>
+                      <button class="js-vieworder updatebtn" data-oid="${responseData[i].o_id}" >View Your Order</button>
                     </div>
                     <div class="product-price">
                       $${responseData[i].amount}
@@ -51,12 +55,12 @@ async function fetchOrderData() {
     contentContainer.innerHTML = containerHTML;
   }
 
-  const orderContainers = document.querySelectorAll(".cart-page-container");
+  const orderContainers = document.querySelectorAll(".js-vieworder");
   orderContainers.forEach(container => {
     container.addEventListener("click", () => {
       const orderID = container.dataset.oid;
       window.location.href = `/order-details?oid=${orderID}`;
-    })
+    });
   });
 
   const deleteButtons = document.querySelectorAll(".js-delete");
@@ -82,4 +86,19 @@ async function fetchOrderData() {
       }
     });
   });
+
+  const reviewButtons = document.querySelectorAll(".js-review");
+  reviewButtons.forEach(button => {
+    if(button.dataset.status === "Completed")
+      {
+        button.style.display = "inline-block";
+        button.addEventListener("click" , (event) => {
+          event.stopPropagation();
+          const oid = button.dataset.oid;
+          window.location.href = `/revieworder?oid=${oid}`;
+        })
+      } else {
+        button.style.display = "none";
+      }
+  })
 }

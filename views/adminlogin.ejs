@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/loginandsignup.css">
+    <title>
+        Admin Login
+    </title>
+</head>
+
+<body>
+    <img src="images/Logo.png" class="logo">
+    <h1 class="easybazar">Easy Bazar</h1>
+        <div id="login" class="logincolor">
+            <h1 class="signupheading"> Admin Log in</h1>
+            <form id="loginForm" action="/login" class="login-form" method="post">
+                <table>
+                    <tr>
+                        <td><input type="text" class="inputbox email" placeholder="Email" name="email" required
+                                id="LoginEmail"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" class="inputbox password" placeholder="Password" name="password" required
+                                id="LoginPassword"></td>
+                    </tr>
+                </table>
+                <button type="submit" class="signupbtn" id="loginButton">Login</button>
+            </form>
+        </div>
+        <script src="/scripts/adminlogin.js"></script>
+</body>
+</html>

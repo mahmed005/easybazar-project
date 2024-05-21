@@ -1,4 +1,6 @@
-const sid = localStorage.getItem("sid") || 1;
+const object = JSON.parse(localStorage.getItem("sid"))
+
+const sid = object.sid;
 
 const tableConatiner = document.querySelector(".js-dashboard-table");
 

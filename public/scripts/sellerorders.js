@@ -1,4 +1,5 @@
-const sid = localStorage.getItem("sid") || 1;
+const object = JSON.parse(localStorage.getItem("sid"))
+const sid = object.sid;
 
 const tableConatiner = document.querySelector("#js-table");
 
@@ -109,14 +110,14 @@ async function renderOrders() {
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ oid : button.dataset.oid, status : parent.children[1].value , cid : button.dataset.cid})
+                        body: JSON.stringify({ oid: button.dataset.oid, status: parent.children[1].value, cid: button.dataset.cid })
                     });
                     const responseData = await response.json();
-                    if(responseData.serverStatus == 2)
-                        {
-                            parent.children[0].innerText = parent.children[1].value;
-                            parent.parentElement.querySelector(".payment-status").innerHTML = "Paid";
-                        }
+                    if (responseData.serverStatus == 2) {
+                        parent.children[0].innerText = parent.children[1].value;
+                        if(parent.children[1].value === "Completed")
+                        parent.parentElement.querySelector(".payment-status").innerHTML = "Paid";
+                    }
                 }
             });
         }

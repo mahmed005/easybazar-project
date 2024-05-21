@@ -17,6 +17,13 @@ exports.getPassword = async function(email) {
     return result;
 }
 
+exports.getAdmin = async function(email,password) {
+    const [result] = await pool.query(`
+    SELECT * FROM admin
+    WHERE email = ? and password = ?`,[email,password]);
+    return result;
+}
+
 exports.getCustomer = async function(userID) {
     const [result] = await pool.query(`
     SELECT *
@@ -313,6 +320,20 @@ exports.getLowStockReport = async function (sid) {
     FROM seller
     natural join products
     WHERE s_id = ?` , [sid]);
+    return result;
+}
+
+exports.addReview = async function(review,pid,cid,star,date) {
+    const [result] = await pool.query(`
+    INSERT INTO reviews
+    VALUES(default,?,?,?,?,?)` , [review,cid,pid,star,date]);
+    return result;
+}
+
+exports.getReviews = async function(pid) {
+    const [result] = await pool.query(`
+    SELECT * from reviews
+    where p_id = ?` , [pid]);
     return result;
 }
 

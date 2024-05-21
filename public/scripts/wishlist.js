@@ -1,4 +1,6 @@
-const cid = localStorage.getItem("cid") || 1;
+const object = JSON.parse(localStorage.getItem("sid"))
+
+const sid = object.sid;
 
 renderWishlist();
 
