@@ -27,7 +27,11 @@
                         </div>
                         <div class="buttons-div">
                             <p class="headtxt">Availability: </p>
+                            <% if(products[i].stock > 0) {%>
                             <p class="Avalibility">In Stock</p>
+                            <%} else {%>
+                                <p class="Avalibility">Out of Stock</p>
+                                <%}%>
                             <p class="headtxt">Price: </p>
                             <p class="Price">PKR <%= products[i].price %></p>
                             <button class="btn btn2" data-pid="<%= products[i].p_id%>">Add to Wishlist</button>
@@ -39,6 +43,11 @@
                 <%}%>
         </div>
         <script type="module" src="/scripts/product-list.js">
+        </script>
+        <script>
+            function toggleText(element) {
+    element.classList.toggle('expanded');
+}
         </script>
         
 

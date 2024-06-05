@@ -1,6 +1,6 @@
-const object = JSON.parse(localStorage.getItem("sid"))
+const object = JSON.parse(localStorage.getItem("cid"))
 
-const sid = object.sid;
+const cid = object.cid;
 
 renderWishlist();
 

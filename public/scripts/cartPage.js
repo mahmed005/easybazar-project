@@ -30,7 +30,7 @@ async function renderCartItems() {
                     ${responseData[i].p_name}
                 </div>
                 <div class="product-price">
-                    $10.90
+                    PKR ${responseData[i].price} 
                 </div>
                 <div class="product-quantity">
                     <span>

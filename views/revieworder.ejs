@@ -32,7 +32,7 @@
                                             <label for="star<%= response[i].p_id%>">Enter Rating</label>
                                             <input type="number" name="stars" id="star<%= response[i].p_id%>" min="1" max="5">
                                             <textarea rows="4" cols="60" class="Reviewbox" placeholder="Review" name="review"></textarea>
-                                            <input type="hidden" name="pid" value="<%= response[i].p_id %>">
+                                            <input type="hidden" name="pid" value="<%=response[i].p_id%>">
                                         </div>
                                     </div>
                                 </div>

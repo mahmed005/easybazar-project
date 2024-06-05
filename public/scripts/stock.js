@@ -35,9 +35,7 @@ async function renderStockOptions()
                 tableHTML += `
                 <tr>
                                 <td>${responseData[i].p_name}</td>
-                                <td>Jeans</td>
                                 <td>${responseData[i].stock}</td>
-                                <td>7</td>
                             </tr>`
             }
 

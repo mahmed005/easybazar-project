@@ -34,8 +34,6 @@ async function getProductsAndCategories() {
                                     <td>${responseData[1][i].p_name}</td>
                                     <td>${responseData[1][i].price}</td>
                                     <td>${responseData[1][i].stock}</td>
-                                    <td>Edit</td>
-                                    <td>Delete</td>
                                 </tr>
                                 `
     }

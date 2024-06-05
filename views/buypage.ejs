@@ -50,14 +50,16 @@
                 <div class="payment-summary-row">
                     <div>Estimated tax (10%):</div>
                     <% let tax = sum/10; %>
+                    <% let total = tax+sum;%>
                     <div class="payment-summary-money">PKR <%= tax %></div>
                 </div>
 
                 <div class="payment-summary-row total-row">
                     <div>Order total:</div>
-                    <div class="payment-summary-money">PKR <%= (tax+sum) %></div>
+                    <div class="payment-summary-money">PKR <%= total %></div>
                 </div>
                 <form action="/buynow" id="buy-form" method="post">
+                    <input type="hidden" name="tax" value="<%= tax %>" id="">
                     <input type="hidden" name="products" value="<%= JSON.stringify(products) %>">
                     <input type="hidden" name="cid" id="cid">
                     <button type="submit" class="place-order-button button-primary">

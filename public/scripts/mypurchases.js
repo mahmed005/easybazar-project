@@ -31,7 +31,7 @@ async function fetchOrderData() {
                       <button class="js-vieworder updatebtn" data-oid="${responseData[i].o_id}" >View Your Order</button>
                     </div>
                     <div class="product-price">
-                      $${responseData[i].amount}
+                      PKR${responseData[i].amount}
                     </div>
                     <div class="product-status">
                         <span>

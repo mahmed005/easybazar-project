@@ -101,6 +101,7 @@
      (they will divide up the remaining space evenly). */
   grid-template-columns: 100px 1fr ;
   column-gap: 25px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 1000px) {

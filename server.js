@@ -150,7 +150,7 @@ app.get("/buynow", async (req, res) => {
     }
     else if (pid) {
         const result = await database.getProduct(pid);
-        result[0].pic_path = "/uploads/" + result[i].pic_path;
+        result[0].pic_path = "/uploads/" + result[0].pic_path;
         result[0]["quantity"] = 1;
         products.push(result[0]);
     }
@@ -175,11 +175,12 @@ app.post("/cart", async (req, res) => {
 app.post("/buynow", async (req, res) => {
     const products = JSON.parse(req.body.products);
     const cid = req.body.cid;
+    const tax = req.body.tax;
     const todayDate = new Date();
     const formattedDate = todayDate.toISOString().split('T')[0];
     let totalAmount = 0;
     for (let i = 0; i < products.length; i++) {
-        totalAmount += Number(products[i].price) * Number(products[i].quantity);
+        totalAmount += (Number(products[i].price) * Number(products[i].quantity) + Number(tax));
     }
     const response = await database.addOrder(cid, formattedDate, totalAmount);
     const orderID = response.insertId;
@@ -187,7 +188,7 @@ app.post("/buynow", async (req, res) => {
         const subTotal = Number(products[i].price) * Number(products[i].quantity);
         const result = await database.addOrderDetail(orderID, products[i].p_id, products[i].quantity, subTotal);
     }
-    res.send("Done");
+    res.render("ordersucceed");
 });
 
 app.get("/mypurchases", (req, res) => {
@@ -355,7 +356,10 @@ app.post("/updatesellerpayment", async (req, res) => {
 app.post("/updatesellerorderstatus", async (req, res) => {
     const { oid, status, cid } = req.body;
     const response = await database.updateSellerOrderStatus(oid, status);
+    if(status === "Completed")
+        {
     const paymentResponse = await database.updateSellerPayment(oid, cid);
+        }
     res.send(response);
 });
 
@@ -401,10 +405,16 @@ app.get("/revieworder" , async (req,res) => {
 
 app.post("/revieworder" , async (req,res) => {
     const{stars,review,pid,cid,quantity} = req.body;
+    console.log(req.body);
     const todayDate = new Date();
     const formattedDate = todayDate.toISOString().split('T')[0];
+    if(quantity >= 2 ) {
     for(let i = 0; i  < quantity ; i++ ) {
         await database.addReview(review[i],pid[i],cid,stars[i],formattedDate);
+    }
+    }
+    else {
+        await database.addReview(review,pid,cid,stars,formattedDate);
     }
     res.redirect("/home");
 });

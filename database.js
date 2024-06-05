@@ -81,7 +81,7 @@ exports.getCategoryProducts = async function (categoryID, limit) {
 
 exports.getCategoryProducts = async function (categoryID) {
     const [result] = await pool.query(`
-    SELECT p_id, p_name, pic_path, p_description, price
+    SELECT p_id, p_name, pic_path, p_description, price , stock
     FROM products
     WHERE cat_id = ?` , [categoryID]);
     return result;
